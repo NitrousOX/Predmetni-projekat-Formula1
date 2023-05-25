@@ -35,15 +35,20 @@ namespace Predmetni_projekat_Formula1
             this.picture_path = Picture_path;
         }
 
-        public uint ID { get; set; }
-        public string First_Name { get; set;}
-        public string Last_Name { get; set;}
-        public string Team { get; set;}
-        public string Nationality { get; set;}
-        public string Chassis_Number { get; set;}
-        public int Num_Races { get; set;}
-        public int Num_Wins { get; set;}
-        public string Picture_path { get; set;}
+        public uint ID { get { return id; } set { id = value; } }
+        public string First_Name { get { return first_Name; } set { first_Name = value; } }
+        public string Last_Name { get { return last_Name; } set { last_Name = value; } }
+        public string Team { get { return team; } set { team = value; } }
+        public string Nationality { get { return nationality; } set { nationality = value; } }
+        public string Chassis_Number { get { return chassis_Number; } set { chassis_Number = value; } }
+        public int Num_Races { get { return num_Races; } set { num_Races = value; } }
+        public int Num_Wins { get { return num_Wins; } set { num_Wins = value; } }
+        public string Picture_path { get { return picture_path; } set { picture_path = value; } }
 
+        public override string ToString() { 
+        string str = id.ToString() + ". " + first_Name + " " + last_Name + " " + team + " " + nationality + " " + chassis_Number + " " + num_Races.ToString() + " " + num_Wins.ToString();
+
+            return str;
+        }
     }
 }

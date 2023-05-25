@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Security.RightsManagement;
@@ -29,10 +30,11 @@ namespace Predmetni_projekat_Formula1
         public MainWindow()
         {
             InitializeComponent();
-           // List<Vozac> vozaci = Ucitaj("C:\\Users\\poljv\\Documents\\GitHub\\Predmetni-projekat-Formula1\\vozaci.txt");
-            //TxtBox_Pretraga.Text = vozaci[0].ToString();
+            List<Vozac> lista_vozaca = Ucitaj_Vozace("..\\..\\..\\vozaci.txt");
         }
-
+        /// <summary>
+        /// TAB1
+        /// </summary>
         private void Btn_Export_Click(object sender, RoutedEventArgs e)
         {
             if ((Radio_CSV.IsChecked == false) && (Radio_XLS.IsChecked == false))
@@ -48,9 +50,11 @@ namespace Predmetni_projekat_Formula1
 
             }
         }
+        /// <summary>
+        /// TAB2
+        /// </summary>
 
-
-        List<Vozac> Ucitaj(string putanja)
+        List<Vozac> Ucitaj_Vozace(string putanja)
         {
             List<Vozac> vozaci = new List<Vozac>();
             uint id;
@@ -70,14 +74,14 @@ namespace Predmetni_projekat_Formula1
             {
                 string[] items = line.Split(',');
                 id = uint.Parse(items[0]);
-                first_Name = items[0];
-                last_Name = items[1];
-                team = items[2];
-                nationality = items[3];
-                chassis_Number = items[4];
-                num_Races = int.Parse(items[5]);
-                num_Wins = int.Parse(items[6]);
-                picture_path = "C:\\Users\\poljv\\Documents\\GitHub\\Predmetni-projekat-Formula1\\Slike\\" + items[7];
+                first_Name = items[1];
+                last_Name = items[2];
+                team = items[3];
+                nationality = items[4];
+                chassis_Number = items[5];
+                num_Races = int.Parse(items[6]);
+                num_Wins = int.Parse(items[7]);
+                picture_path = "..\\..\\..\\Slike\\" + items[8];
 
                 vozaci.Add(new Vozac(id, first_Name, last_Name, team, nationality, chassis_Number, num_Races, num_Wins, picture_path));
             }

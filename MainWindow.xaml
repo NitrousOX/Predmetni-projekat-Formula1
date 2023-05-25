@@ -22,15 +22,23 @@
             <TabItem Header="Drugi">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1.35*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image x:Name="Img_Mapa" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Mapa.jpg"  />
                     
-                    <ListView  d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListView x:Name="ListView_podaci" ItemsSource="{Binding Vozaci}">
                         <ListView.View>
-                            <GridView>
-                                <GridViewColumn/>
+                            <GridView ColumnHeaderStringFormat="">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                                <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding first_name}"/>
+                                <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding last_name}"/>
+                                <GridViewColumn Header="Tim" DisplayMemberBinding="{Binding team}"/>
+                                <GridViewColumn Header="Drzava" DisplayMemberBinding="{Binding nationality}"/>
+                                <GridViewColumn Header="Sasija" DisplayMemberBinding="{Binding chassis_Number}"/>
+                                <GridViewColumn Header="Broj trka" DisplayMemberBinding="{Binding num_Races}"/>
+                                <GridViewColumn Header="Broj pobeda" DisplayMemberBinding="{Binding num_Wins}"/>
+                                <GridViewColumn Header="Slika" DisplayMemberBinding="{Binding picture_path}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
