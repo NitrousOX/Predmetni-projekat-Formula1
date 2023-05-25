@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,32 @@ namespace Predmetni_projekat_Formula1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int idnext = 0;
+        private ObservableCollection<Proizvodjac> proizvodjaciObsLeft = new ObservableCollection<Proizvodjac>();
+        private ObservableCollection<Proizvodjac> proizvodjaciObsRigth = new ObservableCollection<Proizvodjac>();
         public MainWindow()
         {
             InitializeComponent();
+            UcitajProizvodjace("proizvodjaci.txt");
+        }
+
+        private void UcitajProizvodjace(string fajl)
+        {
+            if (File.Exists(fajl))
+            {
+                string[] lines = File.ReadAllLines(fajl);
+                foreach (string line in lines)
+                {
+                    string[] delovi = line.Split(',');
+                    var novProizvodjac = new Proizvodjac() { Id = int.Parse(delovi[0]),Naziv = delovi[1], Sediste = delovi[2], Source = delovi[3] };
+                    proizvodjaciObsLeft.Add(novProizvodjac);
+                    idnext++;
+                }
+            }
+            else
+            {
+                Console.WriteLine("File {0} does not exist!", fajl);
+            }
         }
     }
 }

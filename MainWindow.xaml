@@ -14,7 +14,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TreeView Grid.Column="0">
+                    <TreeView Grid.Column="0" ItemsSource="{Binding proizvodjaciObsLeft}">
                         
                     </TreeView>
                     <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4"/>
