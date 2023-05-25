@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Prvi">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Drugi">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Treci">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
