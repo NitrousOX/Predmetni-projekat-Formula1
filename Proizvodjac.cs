@@ -8,19 +8,30 @@ namespace Predmetni_projekat_Formula1
 {
     class Proizvodjac
     {
-		private string ime;
-		private string zemlja;
+		private int id;
+		private string? naziv;
+		private string? sediste;
+		private string? source;
 
-		public string Zemlja 
+		public string? Source
 		{
-			get { return zemlja; }
-			set { zemlja = value; }
+			get { return source; }
+			set { source = value; }
 		}
-
-		public string Ime
+		public string? Sediste
 		{
-			get { return ime; }
-			set { ime = value; }
+			get { return sediste; }
+			set { sediste = value; }
+		}
+		public int Id 
+		{
+			get { return id; }
+			set { id = value; }
+		}
+		public string? Naziv
+		{
+			get { return naziv; }
+			set { naziv = value; }
 		}
 
 	}
