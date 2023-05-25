@@ -29,8 +29,8 @@ namespace Predmetni_projekat_Formula1
         public MainWindow()
         {
             InitializeComponent();
-            List<Vozac> vozaci = Ucitaj("C:\\Users\\poljv\\Documents\\GitHub\\Predmetni-projekat-Formula1\\vozaci.txt");
-            TxtBox_Pretraga.Text = vozaci[0].ToString();
+           // List<Vozac> vozaci = Ucitaj("C:\\Users\\poljv\\Documents\\GitHub\\Predmetni-projekat-Formula1\\vozaci.txt");
+            //TxtBox_Pretraga.Text = vozaci[0].ToString();
         }
 
         private void Btn_Export_Click(object sender, RoutedEventArgs e)
