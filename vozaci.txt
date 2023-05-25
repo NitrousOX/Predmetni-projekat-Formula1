@@ -1,0 +1,20 @@
+1,Max,Verstappen,Red Bull Racing,Netherlands,CH_1234,10,5,driver1.jpg
+2,Logan,Sargeant,Williams,United States,CH_5678,12,8,driver2.jpg
+3,Lando,Norris,McLaren,United Kingdom,CH_9012,9,4,driver3.jpg
+4,Pierre,Gasly,Alpine,France,CH_3456,11,2,driver4.jpg
+5,Sergio,Perez,Red Bull Racing,Mexico,CH_7890,8,1,driver5.jpg
+6,Fernando,Alonso,Aston Martin Racing,Spain,CH_2345,10,3,driver6.jpg
+7,Charles,Leclerc,Ferrari,Monaco,CH_6789,12,1,driver7.jpg
+8,Lance,Stroll,Aston Martin Racing,Canada,CH_0123,9,0,driver8.jpg
+9,Kevin,Magnussen,Haas,Denmark,CH_4567,11,0,driver9.jpg
+10,Nyck de,Vries,AlphaTauri,Netherlands,CH_8901,8,2,driver10.jpg
+11,Yuki,Tsunoda,AlphaTauri,Japan,CH_2346,10,5,driver11.jpg
+12,Alex,Albon,Williams,Thailand,CH_6787,12,8,driver12.jpg
+13,Zhou,Guanyu,Alfa Romeo,China,CH_0124,9,4,driver13.jpg
+14,Nico,Hulkenberg,Haas,Germany,CH_4568,11,2,driver14.jpg
+15,Esteban,Ocon,Alpine,France,CH_8902,8,1,driver15.jpg
+16,Lewis,Hamilton,Mercedes,United Kingdom,CH_3457,10,3,driver16.jpg
+17,Carlos,Sainz,Ferrari,Spain,CH_7891,12,1,driver17.jpg
+18,George,Russel,Mercedes,United Kingdom,CH_1235,9,0,driver18.jpg
+19,Valtteri,Bottas,Alfa Romeo,Finland,CH_5679,11,0,driver19.jpg
+20,Oscar,Piastri,McLaren,Australia,CH_9013,8,2,driver20.jpg
