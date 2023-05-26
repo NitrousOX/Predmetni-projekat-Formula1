@@ -14,8 +14,17 @@
                         <ColumnDefinition/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TreeView Grid.Column="0" ItemsSource="{Binding proizvodjaciObsLeft}">
-                        
+                    <TreeView Grid.Column="0" Name="treeView1" ItemsSource="{Binding}">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type local:Drzava}" ItemsSource="{Binding Proizvodjaci}">
+                                <TextBlock Text="{Binding Naziv}"/>
+                            </HierarchicalDataTemplate>
+                            <DataTemplate DataType="{x:Type local:Proizvodjac}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Naziv}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </TreeView.Resources>
                     </TreeView>
                     <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4"/>
                 </Grid>

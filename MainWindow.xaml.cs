@@ -23,15 +23,26 @@ namespace Predmetni_projekat_Formula1
     public partial class MainWindow : Window
     {
         private int idnext = 0;
-        private ObservableCollection<Proizvodjac> proizvodjaciObsLeft = new ObservableCollection<Proizvodjac>();
-        private ObservableCollection<Proizvodjac> proizvodjaciObsRigth = new ObservableCollection<Proizvodjac>();
+        private ObservableCollection<Drzava> drzave = new ObservableCollection<Drzava>();
         public MainWindow()
         {
             InitializeComponent();
-            UcitajProizvodjace("proizvodjaci.txt");
+            var drzava = new Drzava { Naziv = "Nemacka" };
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Mercedes" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Audi" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "BMW" });
+
+            var drzava2 = new Drzava { Naziv = "Francuska" };
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Peugeot" });
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Citroen" });
+
+            drzave.Add(drzava);
+            drzave.Add(drzava2);
+            //UcitajProizvodjace("/Proizvodjaci.txt");
+            treeView1.DataContext = drzave;
         }
 
-        private void UcitajProizvodjace(string fajl)
+        /*private void UcitajProizvodjace(string fajl)
         {
             if (File.Exists(fajl))
             {
@@ -48,6 +59,6 @@ namespace Predmetni_projekat_Formula1
             {
                 Console.WriteLine("File {0} does not exist!", fajl);
             }
-        }
+        }*/
     }
 }

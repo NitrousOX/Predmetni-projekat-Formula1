@@ -9,10 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Proizvodjaci.txt" />
     <None Remove="Slike\Evropa.JPG" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Proizvodjaci.txt" />
     <Resource Include="Slike\Evropa.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
