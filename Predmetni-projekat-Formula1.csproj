@@ -10,12 +10,32 @@
 
   <ItemGroup>
     <None Remove="Proizvodjaci.txt" />
+    <None Remove="Slike\audi.jpg" />
+    <None Remove="Slike\bmw.jpg" />
+    <None Remove="Slike\citroen.JPG" />
     <None Remove="Slike\Evropa.JPG" />
+    <None Remove="Slike\mercedes.jpg" />
+    <None Remove="Slike\peugeot.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Proizvodjaci.txt" />
+    <Resource Include="Slike\audi.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\bmw.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\citroen.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Slike\Evropa.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\mercedes.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\peugeot.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -17,11 +17,13 @@
                     <TreeView Grid.Column="0" Name="treeView1" ItemsSource="{Binding}">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type local:Drzava}" ItemsSource="{Binding Proizvodjaci}">
-                                <TextBlock Text="{Binding Naziv}"/>
+                                <TextBlock Text="{Binding Naziv}" />
                             </HierarchicalDataTemplate>
                             <DataTemplate DataType="{x:Type local:Proizvodjac}">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Naziv}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Naziv}" VerticalAlignment="Center"/>
+                                    <TextBlock Text="   "/>
+                                    <Image Source="{Binding Source}" Width="35" Height="35" />
                                 </StackPanel>
                             </DataTemplate>
                         </TreeView.Resources>

@@ -28,13 +28,13 @@ namespace Predmetni_projekat_Formula1
         {
             InitializeComponent();
             var drzava = new Drzava { Naziv = "Nemacka" };
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Mercedes" });
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Audi" });
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "BMW" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Mercedes", Source = "/Slike/mercedes.jpg"});
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Audi", Source = "/Slike/audi.jpg" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "BMW", Source = "/Slike/bmw.jpg" });
 
             var drzava2 = new Drzava { Naziv = "Francuska" };
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Peugeot" });
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Citroen" });
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Peugeot", Source = "/Slike/peugeot.jpg" });
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Citroen", Source = "/Slike/citroen.jpg" });
 
             drzave.Add(drzava);
             drzave.Add(drzava2);
