@@ -61,7 +61,11 @@ namespace Predmetni_projekat_Formula1
 
         private void Image_Drop(object sender, DragEventArgs e)
         {
-            //TODO: sacuvaj proizvodjaca u coleksciju za sada...
+            Proizvodjac? p = e.Data.GetData(typeof(Proizvodjac)) as Proizvodjac;
+            if (p != null && !proizvodjaciMapa.Contains(p))
+            {
+                proizvodjaciMapa.Add(p);
+            }
         }
     }
 }

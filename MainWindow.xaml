@@ -28,7 +28,7 @@
                             </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
-                    <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400" AllowDrop="True"/>
+                    <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400" AllowDrop="True" Drop="Image_Drop"/>
                 </Grid>
             </TabItem>
         </TabControl>
