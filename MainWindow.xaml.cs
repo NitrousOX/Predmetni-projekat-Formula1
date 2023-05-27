@@ -65,7 +65,9 @@ namespace Predmetni_projekat_Formula1
             Proizvodjac? p = e.Data.GetData(typeof(Proizvodjac)) as Proizvodjac;
             if (p != null && !proizvodjaciMapa.Contains(p))
             {
-                p.Location = Mouse.GetPosition(sender as Image);
+                Point loc = Mouse.GetPosition(sender as Image);
+                p.LocationX = loc.X;
+                p.LocationY = loc.Y;
                 proizvodjaciMapa.Add(p);
             }
         }

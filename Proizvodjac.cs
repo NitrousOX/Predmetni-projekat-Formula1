@@ -14,8 +14,8 @@ namespace Predmetni_projekat_Formula1
 		private string? naziv;
 		private string? sediste;
 		private string? source;
-		private System.Windows.Point location = new System.Windows.Point();
-
+		private double locationX;
+		private double locationY;
 		public string? Source
 		{
 			get { return source; }
@@ -64,15 +64,27 @@ namespace Predmetni_projekat_Formula1
 				}
 			}
 		}
-		public System.Windows.Point Location
+		public double LocationX
 		{
-			get { return location; }
+			get { return locationX; }
 			set
 			{
-				if(value != location)
+				if(value != locationX)
 				{
-					location = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Location)));
+					locationX = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationX)));
+				}
+			}
+		}
+		public double LocationY
+		{
+			get { return locationY; }
+			set
+			{
+				if(value != locationY)
+				{
+					locationY = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationY)));
 				}
 			}
 		}
