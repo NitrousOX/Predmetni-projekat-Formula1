@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Predmetni_projekat_Formula1
 		private string? naziv;
 		private string? sediste;
 		private string? source;
+		private Point location;
 
 		public string? Source
 		{
@@ -59,6 +61,18 @@ namespace Predmetni_projekat_Formula1
 				{
 					naziv = value;
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Naziv)));
+				}
+			}
+		}
+		public Point Location
+		{
+			get { return location; }
+			set
+			{
+				if(value != location)
+				{
+					location = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Location)));
 				}
 			}
 		}
