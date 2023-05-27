@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -63,11 +64,11 @@ namespace Predmetni_projekat_Formula1
         private void Image_Drop(object sender, DragEventArgs e)
         {
             Proizvodjac? p = e.Data.GetData(typeof(Proizvodjac)) as Proizvodjac;
+            if (sender is not Image imgMap) return;
             if (p != null && !proizvodjaciMapa.Contains(p))
             {
-                Point loc = Mouse.GetPosition(sender as Image);
-                p.LocationX = loc.X;
-                p.LocationY = loc.Y;
+                Point loc = e.GetPosition(imgMap);
+                p.Location = new Thickness((loc.X - imgMap.Width/2)*2 , (loc.Y - imgMap.Height/2)*2, 0, 0);
                 proizvodjaciMapa.Add(p);
             }
         }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Predmetni_projekat_Formula1
 {
@@ -14,8 +15,7 @@ namespace Predmetni_projekat_Formula1
 		private string? naziv;
 		private string? sediste;
 		private string? source;
-		private double locationX;
-		private double locationY;
+		private Thickness location = new Thickness();
 		public string? Source
 		{
 			get { return source; }
@@ -64,27 +64,15 @@ namespace Predmetni_projekat_Formula1
 				}
 			}
 		}
-		public double LocationX
+		public Thickness Location
 		{
-			get { return locationX; }
+			get { return location; }
 			set
 			{
-				if(value != locationX)
+				if(value != location)
 				{
-					locationX = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationX)));
-				}
-			}
-		}
-		public double LocationY
-		{
-			get { return locationY; }
-			set
-			{
-				if(value != locationY)
-				{
-					locationY = value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LocationY)));
+					location= value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Location)));
 				}
 			}
 		}
