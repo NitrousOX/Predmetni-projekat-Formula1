@@ -21,14 +21,14 @@
                             </HierarchicalDataTemplate>
                             <DataTemplate DataType="{x:Type local:Proizvodjac}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Naziv}" VerticalAlignment="Center"/>
+                                    <Image Source="{Binding Source}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality"/>
                                     <TextBlock Text="   "/>
-                                    <Image Source="{Binding Source}" Width="35" Height="35" />
+                                    <TextBlock Text="{Binding Naziv}" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
-                    <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4"/>
+                    <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400"/>
                 </Grid>
             </TabItem>
         </TabControl>
