@@ -40,6 +40,7 @@ namespace Predmetni_projekat_Formula1
             drzave.Add(drzava);
             drzave.Add(drzava2);
             treeView1.DataContext = drzave;
+            itemsCtrl.DataContext = proizvodjaciMapa;
         }
 
         private void TextBlock_MouseMove(object sender, MouseEventArgs e)
@@ -64,6 +65,7 @@ namespace Predmetni_projekat_Formula1
             Proizvodjac? p = e.Data.GetData(typeof(Proizvodjac)) as Proizvodjac;
             if (p != null && !proizvodjaciMapa.Contains(p))
             {
+                p.Location = Mouse.GetPosition(sender as Image);
                 proizvodjaciMapa.Add(p);
             }
         }

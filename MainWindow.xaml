@@ -28,7 +28,16 @@
                             </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
-                    <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400" AllowDrop="True" Drop="Image_Drop"/>
+                    <Grid Grid.Column="1">
+                        <Image Source="/Slike/Evropa.JPG"  Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400" AllowDrop="True" Drop="Image_Drop"/>
+                        <ItemsControl ItemsSource="{Binding}" x:Name="itemsCtrl">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=Source}" Width="20" Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

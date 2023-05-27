@@ -14,7 +14,7 @@ namespace Predmetni_projekat_Formula1
 		private string? naziv;
 		private string? sediste;
 		private string? source;
-		private Point location;
+		private System.Windows.Point location = new System.Windows.Point();
 
 		public string? Source
 		{
@@ -64,7 +64,7 @@ namespace Predmetni_projekat_Formula1
 				}
 			}
 		}
-		public Point Location
+		public System.Windows.Point Location
 		{
 			get { return location; }
 			set
