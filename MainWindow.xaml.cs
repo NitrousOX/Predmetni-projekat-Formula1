@@ -24,6 +24,7 @@ namespace Predmetni_projekat_Formula1
     {
         private int idnext = 0;
         private ObservableCollection<Drzava> drzave = new ObservableCollection<Drzava>();
+        private ObservableCollection<Proizvodjac> proizvodjaciMapa = new ObservableCollection<Proizvodjac>();
         public MainWindow()
         {
             InitializeComponent();
@@ -38,27 +39,29 @@ namespace Predmetni_projekat_Formula1
 
             drzave.Add(drzava);
             drzave.Add(drzava2);
-            //UcitajProizvodjace("/Proizvodjaci.txt");
             treeView1.DataContext = drzave;
         }
 
-        /*private void UcitajProizvodjace(string fajl)
+        private void TextBlock_MouseMove(object sender, MouseEventArgs e)
         {
-            if (File.Exists(fajl))
+            if (sender is not TextBlock textBlock) return;
+
+            Proizvodjac? p = null;
+            foreach(Drzava d in drzave)
             {
-                string[] lines = File.ReadAllLines(fajl);
-                foreach (string line in lines)
+                p = d.Proizvodjaci.Where(x => x.Naziv == textBlock.Text).FirstOrDefault();
+                if(p != null && e.LeftButton == MouseButtonState.Pressed)
                 {
-                    string[] delovi = line.Split(',');
-                    var novProizvodjac = new Proizvodjac() { Id = int.Parse(delovi[0]),Naziv = delovi[1], Sediste = delovi[2], Source = delovi[3] };
-                    proizvodjaciObsLeft.Add(novProizvodjac);
-                    idnext++;
+                    DragDrop.DoDragDrop(textBlock, p, DragDropEffects.Copy); 
+                    break;
                 }
             }
-            else
-            {
-                Console.WriteLine("File {0} does not exist!", fajl);
-            }
-        }*/
+
+        }
+
+        private void Image_Drop(object sender, DragEventArgs e)
+        {
+            //TODO: sacuvaj proizvodjaca u coleksciju za sada...
+        }
     }
 }

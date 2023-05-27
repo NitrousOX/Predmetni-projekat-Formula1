@@ -14,7 +14,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TreeView Grid.Column="0" Name="treeView1" ItemsSource="{Binding}">
+                    <TreeView Grid.Column="0" Name="treeView1" ItemsSource="{Binding}" >
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type local:Drzava}" ItemsSource="{Binding Proizvodjaci}">
                                 <TextBlock Text="{Binding Naziv}" />
@@ -23,12 +23,12 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{Binding Source}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality"/>
                                     <TextBlock Text="   "/>
-                                    <TextBlock Text="{Binding Naziv}" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Naziv}" VerticalAlignment="Center" MouseMove="TextBlock_MouseMove"/>
                                 </StackPanel>
                             </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
-                    <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400"/>
+                    <Image Grid.Column="1" Source="/Slike/Evropa.JPG" Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400" AllowDrop="True"/>
                 </Grid>
             </TabItem>
         </TabControl>
