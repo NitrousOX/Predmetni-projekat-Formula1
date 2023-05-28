@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,17 +27,18 @@ namespace Predmetni_projekat_Formula1
         private int idnext = 0;
         private ObservableCollection<Drzava> drzave = new ObservableCollection<Drzava>();
         private ObservableCollection<Proizvodjac> proizvodjaciMapa = new ObservableCollection<Proizvodjac>();
+        private Image temp = new Image();
         public MainWindow()
         {
             InitializeComponent();
             var drzava = new Drzava { Naziv = "Nemacka" };
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Mercedes", Source = "/Slike/mercedes.jpg"});
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Audi", Source = "/Slike/audi.jpg" });
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "BMW", Source = "/Slike/bmw.jpg" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Mercedes", Source = "/Slike/mercedes.png"});
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Audi", Source = "/Slike/audi.png" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "BMW", Source = "/Slike/bmw.png" });
 
             var drzava2 = new Drzava { Naziv = "Francuska" };
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Peugeot", Source = "/Slike/peugeot.jpg" });
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Citroen", Source = "/Slike/citroen.jpg" });
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Peugeot", Source = "/Slike/peugeot.png" });
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Citroen", Source = "/Slike/citroen.png" });
 
             drzave.Add(drzava);
             drzave.Add(drzava2);
@@ -65,7 +67,7 @@ namespace Predmetni_projekat_Formula1
         {
             Proizvodjac? p = e.Data.GetData(typeof(Proizvodjac)) as Proizvodjac;
             if (sender is not Image imgMap) return;
-            if (p != null /*!&& proizvodjaciMapa.Contains(p)*/)
+            if (p != null)
             {
                 if(proizvodjaciMapa.Contains(p)) 
                 {
@@ -89,6 +91,45 @@ namespace Predmetni_projekat_Formula1
                     DragDrop.DoDragDrop(imgProizvodjac, p, DragDropEffects.Copy);
                     break;
                 }
+            }
+        }
+
+        private void MenuItem_Click_Ukloni(object sender, RoutedEventArgs e)
+        {
+            if(temp != null)
+            {
+                var proizvodjac = proizvodjaciMapa.Where(x => x.Source != null && temp.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                if(proizvodjac != null)
+                {
+                    proizvodjaciMapa.Remove(proizvodjac);
+                }
+            }
+        }
+        private void MenuItem_Click_Obrisi(object sender, RoutedEventArgs e)
+        {
+            if(temp != null)
+            {
+                var proizvodjac = proizvodjaciMapa.Where(x => x.Source != null && temp.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                if(proizvodjac != null)
+                {
+                    foreach(Drzava d in drzave)
+                    {
+                        if (d.Proizvodjaci.Contains(proizvodjac))
+                        {
+                            d.Proizvodjaci.Remove(proizvodjac);
+                            break;
+                        }
+                    }
+                    proizvodjaciMapa.Remove(proizvodjac);
+                }
+            }
+        }
+
+        private void Image_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.Source is Image image)
+            {
+                temp = image;
             }
         }
     }

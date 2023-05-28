@@ -38,7 +38,15 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Path=Source}"  Width="20" Height="20" Margin ="{Binding Location}" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove"/>
+                                    <Image Source="{Binding Path=Source}"  Width="20" Height="20" Margin ="{Binding Location}" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove" MouseRightButtonDown="Image_MouseRightButtonDown">
+                                        <Image.ContextMenu>
+                                            <ContextMenu Name="cmImage">
+                                                <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni"/>
+                                                <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi"/>
+                                                <MenuItem Header="Izmeni"/>
+                                            </ContextMenu>
+                                        </Image.ContextMenu>
+                                    </Image>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

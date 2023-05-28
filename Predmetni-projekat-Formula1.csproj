@@ -11,31 +11,36 @@
   <ItemGroup>
     <None Remove="Proizvodjaci.txt" />
     <None Remove="Slike\audi.jpg" />
+    <None Remove="Slike\audi.png" />
     <None Remove="Slike\bmw.jpg" />
+    <None Remove="Slike\bmw.png" />
     <None Remove="Slike\citroen.JPG" />
+    <None Remove="Slike\citroen.png" />
     <None Remove="Slike\Evropa.JPG" />
     <None Remove="Slike\mercedes.jpg" />
+    <None Remove="Slike\mercedes.png" />
     <None Remove="Slike\peugeot.jpg" />
+    <None Remove="Slike\peugeot.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Proizvodjaci.txt" />
-    <Resource Include="Slike\audi.jpg">
+    <Resource Include="Slike\audi.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Slike\bmw.jpg">
+    <Resource Include="Slike\bmw.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Slike\citroen.JPG">
+    <Resource Include="Slike\citroen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Slike\Evropa.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Slike\mercedes.jpg">
+    <Resource Include="Slike\mercedes.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Slike\peugeot.jpg">
+    <Resource Include="Slike\peugeot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
