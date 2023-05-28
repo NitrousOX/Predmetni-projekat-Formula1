@@ -65,11 +65,30 @@ namespace Predmetni_projekat_Formula1
         {
             Proizvodjac? p = e.Data.GetData(typeof(Proizvodjac)) as Proizvodjac;
             if (sender is not Image imgMap) return;
-            if (p != null && !proizvodjaciMapa.Contains(p))
+            if (p != null /*!&& proizvodjaciMapa.Contains(p)*/)
             {
+                if(proizvodjaciMapa.Contains(p)) 
+                {
+                    proizvodjaciMapa.Remove(p);
+                } 
                 Point loc = e.GetPosition(imgMap);
-                p.Location = new Thickness((loc.X - imgMap.Width/2)*2 , (loc.Y - imgMap.Height/2)*2, 0, 0);
+                p.Location = new Thickness((loc.X - imgMap.Width / 2 + 10) * 2, (loc.Y - imgMap.Height / 2 + 10) * 2, 0, 0 );
                 proizvodjaciMapa.Add(p);
+            }
+        }
+
+        private void Image_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (sender is not Image imgProizvodjac) return;
+            Proizvodjac? p = null;
+            foreach(Drzava d in drzave)
+            {
+                p = d.Proizvodjaci.Where(x => x.Source != null && imgProizvodjac.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                if(p != null && e.LeftButton == MouseButtonState.Pressed)
+                {
+                    DragDrop.DoDragDrop(imgProizvodjac, p, DragDropEffects.Copy);
+                    break;
+                }
             }
         }
     }

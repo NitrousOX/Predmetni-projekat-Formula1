@@ -38,7 +38,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Path=Source}"  Width="20" Height="20" Margin ="{Binding Location}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <Image Source="{Binding Path=Source}"  Width="20" Height="20" Margin ="{Binding Location}" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
