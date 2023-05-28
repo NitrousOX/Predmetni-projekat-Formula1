@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Predmetni_projekat_Formula1
 {
-    class Proizvodjac : INotifyPropertyChanged
+    public class Proizvodjac : INotifyPropertyChanged
     {
 		private int id;
 		private string? naziv;

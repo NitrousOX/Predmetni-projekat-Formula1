@@ -43,7 +43,7 @@
                                             <ContextMenu Name="cmImage">
                                                 <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni"/>
                                                 <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi"/>
-                                                <MenuItem Header="Izmeni"/>
+                                                <MenuItem Header="Izmeni" Click="MenuItem_Click_Izmeni"/>
                                             </ContextMenu>
                                         </Image.ContextMenu>
                                     </Image>

@@ -32,13 +32,13 @@ namespace Predmetni_projekat_Formula1
         {
             InitializeComponent();
             var drzava = new Drzava { Naziv = "Nemacka" };
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Mercedes", Source = "/Slike/mercedes.png"});
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Audi", Source = "/Slike/audi.png" });
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "BMW", Source = "/Slike/bmw.png" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Nemacka", Naziv = "Mercedes", Source = "/Slike/mercedes.png"});
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Nemacka", Naziv = "Audi", Source = "/Slike/audi.png" });
+            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Nemacka", Naziv = "BMW", Source = "/Slike/bmw.png" });
 
             var drzava2 = new Drzava { Naziv = "Francuska" };
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Peugeot", Source = "/Slike/peugeot.png" });
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Naziv = "Citroen", Source = "/Slike/citroen.png" });
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Francuska", Naziv = "Peugeot", Source = "/Slike/peugeot.png" });
+            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Francuska", Naziv = "Citroen", Source = "/Slike/citroen.png" });
 
             drzave.Add(drzava);
             drzave.Add(drzava2);
@@ -107,6 +107,11 @@ namespace Predmetni_projekat_Formula1
         }
         private void MenuItem_Click_Obrisi(object sender, RoutedEventArgs e)
         {
+            if(MessageBox.Show("Ovom operacijom cete potpuno obrisati proizvodjaca iz aplikacije!",
+                "Oprez!", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.Cancel)
+            {
+                return;
+            }
             if(temp != null)
             {
                 var proizvodjac = proizvodjaciMapa.Where(x => x.Source != null && temp.Source.ToString().Contains(x.Source)).FirstOrDefault();
@@ -121,6 +126,19 @@ namespace Predmetni_projekat_Formula1
                         }
                     }
                     proizvodjaciMapa.Remove(proizvodjac);
+                }
+            }
+        }
+        private void MenuItem_Click_Izmeni(object sender, RoutedEventArgs e)
+        {
+            if(temp != null)
+            {
+                var proizvodjac = proizvodjaciMapa.Where(x => x.Source != null && temp.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                if(proizvodjac != null)
+                {
+                    var prozor = new ProizvodjacEditWindow(proizvodjac);
+                    prozor.Owner = this;
+                    prozor.ShowDialog();
                 }
             }
         }
