@@ -24,8 +24,31 @@ namespace Predmetni_projekat_Formula1
         public ProizvodjacEditWindow(Proizvodjac proizvodjac)
         {
             InitializeComponent();
+            this.ResizeMode = ResizeMode.NoResize;
             this.DataContext = proizvodjac;
             MyProizvodjac = proizvodjac;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var bndExNaziv = tbNaziv.GetBindingExpression(TextBox.TextProperty);
+            var bndExSediste = tbSediste.GetBindingExpression(TextBox.TextProperty);
+            var bndExSource = tbSource.GetBindingExpression(TextBox.TextProperty);
+            bndExNaziv.UpdateSource();
+            bndExSediste.UpdateSource();
+            bndExSource.UpdateSource();
+            this.Close();
+        }
+
+        private void Button_Click_Open(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            bool? opened = openFileDialog.ShowDialog();
+
+            if (opened == true) 
+            {
+                tbSource.Text = openFileDialog.FileName;
+            }
         }
     }
 }
