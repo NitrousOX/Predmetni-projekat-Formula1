@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Proizvodjaci.txt" />
     <Resource Include="Slike\audi.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

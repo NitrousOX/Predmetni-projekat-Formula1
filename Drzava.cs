@@ -11,7 +11,7 @@ namespace Predmetni_projekat_Formula1
     public class Drzava : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        public ObservableCollection<Proizvodjac> Proizvodjaci { get; } = new ObservableCollection<Proizvodjac>();
+        public ObservableCollection<Proizvodjac> Proizvodjaci { get; set; } = new ObservableCollection<Proizvodjac>();
         private string? naziv;
 
         public string Naziv

@@ -35,17 +35,7 @@ namespace Predmetni_projekat_Formula1
         public MainWindow()
         {
             InitializeComponent();
-            var drzava = new Drzava { Naziv = "Nemacka" };
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Nemacka", Naziv = "Mercedes", Source = "/Slike/mercedes.png"});
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Nemacka", Naziv = "Audi", Source = "/Slike/audi.png" });
-            drzava.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Nemacka", Naziv = "BMW", Source = "/Slike/bmw.png" });
-
-            var drzava2 = new Drzava { Naziv = "Francuska" };
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Francuska", Naziv = "Peugeot", Source = "/Slike/peugeot.png" });
-            drzava2.Proizvodjaci.Add(new Proizvodjac { Id = idnext++, Sediste = "Francuska", Naziv = "Citroen", Source = "/Slike/citroen.png" });
-
-            drzave.Add(drzava);
-            drzave.Add(drzava2);
+            LoadProizvodjace("Proizvodjaci.txt");
             treeView1.DataContext = drzave;
             itemsCtrl.DataContext = proizvodjaciMapa;
         }
@@ -152,6 +142,48 @@ namespace Predmetni_projekat_Formula1
             if(e.Source is Image image)
             {
                 temp = image;
+            }
+        }
+        private void LoadProizvodjace(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                string[] lines = File.ReadAllLines(fileName);
+                foreach(string line in lines)
+                {
+
+                    string[] parts = line.Split(',');
+                    Proizvodjac p = new Proizvodjac
+                    {
+                        Id = idnext++,
+                        Naziv = parts[1],
+                        Sediste = parts[2],
+                        Source = parts[3]
+                    };
+                    Drzava? d = drzave.Where(x => x.Naziv == parts[2]).FirstOrDefault();
+                    if(d == null)
+                    {
+                        drzave.Add(new Drzava
+                        {
+                            Naziv = parts[2],
+                            Proizvodjaci = new ObservableCollection<Proizvodjac>
+                            {
+                                p
+                            }
+                        });
+                    }
+                    else
+                    {
+                        if (d.Proizvodjaci.Contains(p))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            d.Proizvodjaci.Add(p);
+                        }
+                    }
+                }
             }
         }
         private static string GetLastPartOfSource(Image img)
