@@ -28,6 +28,10 @@ namespace Predmetni_projekat_Formula1
         private ObservableCollection<Drzava> drzave = new ObservableCollection<Drzava>();
         private ObservableCollection<Proizvodjac> proizvodjaciMapa = new ObservableCollection<Proizvodjac>();
         private Image temp = new Image();
+        public ObservableCollection<Drzava> Drzave
+        {
+            get { return drzave; }
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -85,7 +89,7 @@ namespace Predmetni_projekat_Formula1
             Proizvodjac? p = null;
             foreach(Drzava d in drzave)
             {
-                p = d.Proizvodjaci.Where(x => x.Source != null && imgProizvodjac.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                p = GetProizvodjacFromImage(imgProizvodjac, d.Proizvodjaci);
                 if(p != null && e.LeftButton == MouseButtonState.Pressed)
                 {
                     DragDrop.DoDragDrop(imgProizvodjac, p, DragDropEffects.Copy);
@@ -98,7 +102,7 @@ namespace Predmetni_projekat_Formula1
         {
             if(temp != null)
             {
-                var proizvodjac = proizvodjaciMapa.Where(x => x.Source != null && temp.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                var proizvodjac = GetProizvodjacFromImage(temp, proizvodjaciMapa);
                 if(proizvodjac != null)
                 {
                     proizvodjaciMapa.Remove(proizvodjac);
@@ -114,7 +118,7 @@ namespace Predmetni_projekat_Formula1
             }
             if(temp != null)
             {
-                var proizvodjac = proizvodjaciMapa.Where(x => x.Source != null && temp.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                var proizvodjac = GetProizvodjacFromImage(temp, proizvodjaciMapa);
                 if(proizvodjac != null)
                 {
                     foreach(Drzava d in drzave)
@@ -133,7 +137,7 @@ namespace Predmetni_projekat_Formula1
         {
             if(temp != null)
             {
-                var proizvodjac = proizvodjaciMapa.Where(x => x.Source != null && temp.Source.ToString().Contains(x.Source)).FirstOrDefault();
+                var proizvodjac = GetProizvodjacFromImage(temp, proizvodjaciMapa);
                 if(proizvodjac != null)
                 {
                     var prozor = new ProizvodjacEditWindow(proizvodjac);
@@ -149,6 +153,15 @@ namespace Predmetni_projekat_Formula1
             {
                 temp = image;
             }
+        }
+        private static string GetLastPartOfSource(Image img)
+        {
+            return img.Source.ToString().Split('/').Last();
+        }
+
+        public static Proizvodjac? GetProizvodjacFromImage(Image img, ICollection<Proizvodjac> proizvodjaci)
+        {
+            return proizvodjaci.Where(x => x.Source != null && x.Source.Contains(GetLastPartOfSource(img))).FirstOrDefault();
         }
     }
 }

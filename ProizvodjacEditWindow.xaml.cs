@@ -44,11 +44,22 @@ namespace Predmetni_projekat_Formula1
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
             bool? opened = openFileDialog.ShowDialog();
-
+            string source = "";
             if (opened == true) 
             {
-                tbSource.Text = openFileDialog.FileName;
+                source = openFileDialog.FileName;
+                var drzave = (Owner as MainWindow).Drzave;
+                foreach(Drzava d in drzave)
+                {
+                    if(d.Proizvodjaci.Where(x => x.Source != null && source.Contains(x.Source)).Any())
+                    {
+                        MessageBox.Show("Ova slika je vec uporebljena!","Greska!",MessageBoxButton.OK,MessageBoxImage.Error);
+                        return;
+                    }
+                }
+                tbSource.Text = source;
             }
         }
+
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Predmetni_projekat_Formula1
 {
-    class Drzava : INotifyPropertyChanged
+    public class Drzava : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public ObservableCollection<Proizvodjac> Proizvodjaci { get; } = new ObservableCollection<Proizvodjac>();
