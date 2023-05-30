@@ -7,6 +7,59 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Proizvodjaci">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TreeView Grid.Column="0" Name="treeView1" ItemsSource="{Binding}" >
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type local:Drzava}" ItemsSource="{Binding Proizvodjaci}">
+                                <TextBlock Text="{Binding Naziv}" />
+                            </HierarchicalDataTemplate>
+                            <DataTemplate DataType="{x:Type local:Proizvodjac}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Source}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <TextBlock Text="   "/>
+                                    <TextBlock Text="{Binding Naziv}" VerticalAlignment="Center" MouseMove="TextBlock_MouseMove"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
+                    <Grid Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Image Source="/Slike/Evropa.JPG"  Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400" AllowDrop="True" Drop="Image_Drop">
+                            <Image.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Dodaj novog proizvodjaca" Click="MenuItem_Click_Dodaj"/>
+                                </ContextMenu>
+                            </Image.ContextMenu>
+                        </Image>
+                        <ItemsControl ItemsSource="{Binding}" x:Name="itemsCtrl">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Grid/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=Source}"  Width="20" Height="20" Margin ="{Binding Location}" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove" MouseRightButtonDown="Image_MouseRightButtonDown">
+                                        <Image.ContextMenu> 
+                                            <ContextMenu Name="cmImage">
+                                                <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni"/>
+                                                <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi"/>
+                                                <MenuItem Header="Izmeni" Click="MenuItem_Click_Izmeni"/>
+                                            </ContextMenu>
+                                        </Image.ContextMenu>
+                                    </Image>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

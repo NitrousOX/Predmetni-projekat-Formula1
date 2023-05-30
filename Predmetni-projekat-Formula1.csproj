@@ -8,4 +8,55 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Proizvodjaci.txt" />
+    <None Remove="Slike\audi.jpg" />
+    <None Remove="Slike\audi.png" />
+    <None Remove="Slike\bmw.jpg" />
+    <None Remove="Slike\bmw.png" />
+    <None Remove="Slike\citroen.JPG" />
+    <None Remove="Slike\citroen.png" />
+    <None Remove="Slike\Evropa.JPG" />
+    <None Remove="Slike\mercedes.jpg" />
+    <None Remove="Slike\mercedes.png" />
+    <None Remove="Slike\peugeot.jpg" />
+    <None Remove="Slike\peugeot.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Slike\audi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\bmw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\citroen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\Evropa.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\mercedes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\peugeot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>
