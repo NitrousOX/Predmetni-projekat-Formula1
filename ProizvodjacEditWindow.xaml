@@ -28,6 +28,6 @@
                 <TextBox Width="150" x:Name="tbSource" Text="{Binding Path=Source, UpdateSourceTrigger=Explicit}"/>
                 <Button Content="Browse" Margin="15 0" Click="Button_Click_Open"/>
             </StackPanel>
-        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Izmeni" Margin="60 10" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="{Binding}" Name="btnDodajIzmeni" Margin="60 10" Click="Button_Click"/>
     </Grid>
 </Window>

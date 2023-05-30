@@ -97,6 +97,7 @@ namespace Predmetni_projekat_Formula1
             var dodaj_wnd = new ProizvodjacEditWindow(nov_proizvodjac);
             dodaj_wnd.Owner = this;
             dodaj_wnd.Title = "Dodaj novog proizvodjaca";
+            dodaj_wnd.btnDodajIzmeni.Content = "Dodaj";
             dodaj_wnd.ShowDialog();
             SaveProizvodjace("Proizvodjaci.txt");
         }
@@ -146,6 +147,7 @@ namespace Predmetni_projekat_Formula1
                     var prozor = new ProizvodjacEditWindow(proizvodjac);
                     prozor.Owner = this;
                     prozor.Title = "Izmeni proizvodjaca";
+                    prozor.btnDodajIzmeni.Content = "Izmeni";
                     prozor.ShowDialog();
                     SaveProizvodjace("Proizvodjaci.txt");
                 }
