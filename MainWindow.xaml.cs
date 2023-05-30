@@ -158,19 +158,16 @@ namespace Predmetni_projekat_Formula1
         }
         private void SaveProizvodjace(string fileName)
         {
-            if (File.Exists(fileName))
+            List<string> proizvodjaci = new List<string>();
+            foreach (Drzava d in drzave)
             {
-                List<string> proizvodjaci = new List<string>();
-                foreach (Drzava d in drzave)
+                foreach (Proizvodjac p in d.Proizvodjaci)
                 {
-                    foreach (Proizvodjac p in d.Proizvodjaci)
-                    {
-                        proizvodjaci.Add(String.Format("{0},{1},{2},{3}", p.Id, p.Naziv, p.Sediste, p.Source));
+                    proizvodjaci.Add(String.Format("{0},{1},{2},{3},{4},{5}", p.Id, p.Naziv, p.Sediste, p.Source,p.Location.Left,p.Location.Top));
 
-                    }
                 }
-                File.WriteAllLines(fileName, proizvodjaci.ToArray());
             }
+            File.WriteAllLines(fileName, proizvodjaci.ToArray());
         }
         private void LoadProizvodjace(string fileName)
         {
@@ -188,7 +185,8 @@ namespace Predmetni_projekat_Formula1
                             Id = idnext++,
                             Naziv = parts[1],
                             Sediste = parts[2],
-                            Source = parts[3]
+                            Source = parts[3],
+                            Location = new Thickness(double.Parse(parts[4]), double.Parse(parts[5]), 0, 0)
                         };
                         Drzava? d = drzave.Where(x => x.Naziv == parts[2]).FirstOrDefault();
                         if (d == null)
