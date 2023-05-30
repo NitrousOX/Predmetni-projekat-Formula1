@@ -70,13 +70,11 @@ namespace Predmetni_projekat_Formula1
                 source = openFileDialog.FileName;
                 if(Owner is MainWindow window)
                 {
-
-                    var drzave = window.Drzave;
-                    foreach(Drzava d in drzave)
+                    foreach(Drzava d in window.Drzave)
                     {
-                        if(d.Proizvodjaci.Where(x => x.Source != null && source.Contains(x.Source)).Any())
+                        if(d.Proizvodjaci.Where(x => x.Source != null && source.Contains(x.Source.Split('/').Last())).Any())
                         {
-                            MessageBox.Show("Ova slika je vec uporebljena!","Greska!",MessageBoxButton.OK,MessageBoxImage.Error);
+                            MessageBox.Show("Ova slika je vec upotrebljena!","Greska!",MessageBoxButton.OK,MessageBoxImage.Error);
                             return;
                         }
                     }
