@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Collections.ObjectModel;
 namespace Predmetni_projekat_Formula1
 {
     /// <summary>
@@ -31,12 +31,32 @@ namespace Predmetni_projekat_Formula1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string? sediste_pre = MyProizvodjac.Sediste;
             var bndExNaziv = tbNaziv.GetBindingExpression(TextBox.TextProperty);
             var bndExSediste = tbSediste.GetBindingExpression(TextBox.TextProperty);
             var bndExSource = tbSource.GetBindingExpression(TextBox.TextProperty);
             bndExNaziv.UpdateSource();
             bndExSediste.UpdateSource();
             bndExSource.UpdateSource();
+            if(sediste_pre != MyProizvodjac.Sediste && Owner is MainWindow wnd)
+            {
+                Drzava? d_new = wnd.Drzave.Where(x => x.Naziv == MyProizvodjac.Sediste).FirstOrDefault();
+                Drzava? d_old = wnd.Drzave.Where(x => x.Naziv == sediste_pre).FirstOrDefault();
+                if (d_old != null) 
+                {
+                     d_old.Proizvodjaci.Remove(MyProizvodjac);
+                    if (d_old.Proizvodjaci.Count == 0) wnd.Drzave.Remove(d_old);
+                } 
+                if(d_new != null)
+                {
+                    d_new.Proizvodjaci.Add(MyProizvodjac);
+                }
+                else
+                {
+                    d_new = new Drzava { Naziv = MyProizvodjac.Sediste, Proizvodjaci = new ObservableCollection<Proizvodjac> { MyProizvodjac } };
+                    wnd.Drzave.Add(d_new);
+                }
+            }
             this.Close();
         }
 
@@ -48,16 +68,20 @@ namespace Predmetni_projekat_Formula1
             if (opened == true) 
             {
                 source = openFileDialog.FileName;
-                var drzave = (Owner as MainWindow).Drzave;
-                foreach(Drzava d in drzave)
+                if(Owner is MainWindow window)
                 {
-                    if(d.Proizvodjaci.Where(x => x.Source != null && source.Contains(x.Source)).Any())
+
+                    var drzave = window.Drzave;
+                    foreach(Drzava d in drzave)
                     {
-                        MessageBox.Show("Ova slika je vec uporebljena!","Greska!",MessageBoxButton.OK,MessageBoxImage.Error);
-                        return;
+                        if(d.Proizvodjaci.Where(x => x.Source != null && source.Contains(x.Source)).Any())
+                        {
+                            MessageBox.Show("Ova slika je vec uporebljena!","Greska!",MessageBoxButton.OK,MessageBoxImage.Error);
+                            return;
+                        }
                     }
+                    tbSource.Text = source;
                 }
-                tbSource.Text = source;
             }
         }
 
