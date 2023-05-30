@@ -88,6 +88,16 @@ namespace Predmetni_projekat_Formula1
             }
         }
 
+        private void MenuItem_Click_Dodaj(object sender, RoutedEventArgs e)
+        {
+            Proizvodjac nov_proizvodjac = new Proizvodjac();
+            var dodaj_wnd = new ProizvodjacEditWindow(nov_proizvodjac);
+            dodaj_wnd.Owner = this;
+            dodaj_wnd.Title = "Dodaj novog proizvodjaca";
+            dodaj_wnd.ShowDialog();
+            
+
+        }
         private void MenuItem_Click_Ukloni(object sender, RoutedEventArgs e)
         {
             if(temp != null)
@@ -132,6 +142,7 @@ namespace Predmetni_projekat_Formula1
                 {
                     var prozor = new ProizvodjacEditWindow(proizvodjac);
                     prozor.Owner = this;
+                    prozor.Title = "Izmeni proizvodjaca";
                     prozor.ShowDialog();
                 }
             }

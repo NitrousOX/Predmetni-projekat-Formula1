@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.IO;
+
 namespace Predmetni_projekat_Formula1
 {
     /// <summary>
@@ -32,6 +34,7 @@ namespace Predmetni_projekat_Formula1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string? sediste_pre = MyProizvodjac.Sediste;
+            string? source_pre = MyProizvodjac.Source;
             var bndExNaziv = tbNaziv.GetBindingExpression(TextBox.TextProperty);
             var bndExSediste = tbSediste.GetBindingExpression(TextBox.TextProperty);
             var bndExSource = tbSource.GetBindingExpression(TextBox.TextProperty);
@@ -56,6 +59,12 @@ namespace Predmetni_projekat_Formula1
                     d_new = new Drzava { Naziv = MyProizvodjac.Sediste, Proizvodjaci = new ObservableCollection<Proizvodjac> { MyProizvodjac } };
                     wnd.Drzave.Add(d_new);
                 }
+            }
+            if (!File.Exists(MyProizvodjac.Source))
+            {
+                MessageBox.Show("Morate izabrati tacnu putanju!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MyProizvodjac.Source = source_pre;
+                return;
             }
             this.Close();
         }
