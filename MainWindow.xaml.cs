@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Predmetni_projekat_Formula1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int idnext = 0;
+        private int idnext;
         private ObservableCollection<Drzava> drzave = new ObservableCollection<Drzava>();
         private ObservableCollection<Proizvodjac> proizvodjaciMapa = new ObservableCollection<Proizvodjac>();
         private Image temp = new Image();
@@ -35,6 +36,7 @@ namespace Predmetni_projekat_Formula1
         public MainWindow()
         {
             InitializeComponent();
+            this.ResizeMode = ResizeMode.NoResize;
             LoadProizvodjace("Proizvodjaci.txt");
             treeView1.DataContext = drzave;
             itemsCtrl.DataContext = proizvodjaciMapa;
@@ -91,6 +93,7 @@ namespace Predmetni_projekat_Formula1
         private void MenuItem_Click_Dodaj(object sender, RoutedEventArgs e)
         {
             Proizvodjac nov_proizvodjac = new Proizvodjac();
+            nov_proizvodjac.Id = idnext++;
             var dodaj_wnd = new ProizvodjacEditWindow(nov_proizvodjac);
             dodaj_wnd.Owner = this;
             dodaj_wnd.Title = "Dodaj novog proizvodjaca";
@@ -163,7 +166,8 @@ namespace Predmetni_projekat_Formula1
             {
                 foreach (Proizvodjac p in d.Proizvodjaci)
                 {
-                    proizvodjaci.Add(String.Format("{0},{1},{2},{3},{4},{5}", p.Id, p.Naziv, p.Sediste, p.Source,p.Location.Left,p.Location.Top));
+                    bool naMapi = proizvodjaciMapa.Contains(p);
+                    proizvodjaci.Add(String.Format("{0},{1},{2},{3},{4},{5},{6}", p.Id, p.Naziv, p.Sediste, p.Source,p.Location.Left,p.Location.Top,naMapi));
 
                 }
             }
@@ -182,7 +186,7 @@ namespace Predmetni_projekat_Formula1
                         string[] parts = line.Split(',');
                         Proizvodjac p = new Proizvodjac
                         {
-                            Id = idnext++,
+                            Id = int.Parse(parts[0]),
                             Naziv = parts[1],
                             Sediste = parts[2],
                             Source = parts[3],
@@ -199,6 +203,7 @@ namespace Predmetni_projekat_Formula1
                                     p
                                 }
                             });
+                        
                         }
                         else
                         {
@@ -211,6 +216,11 @@ namespace Predmetni_projekat_Formula1
                                 d.Proizvodjaci.Add(p);
                             }
                         }
+                        if (bool.Parse(parts[6]))
+                        {
+                            proizvodjaciMapa.Add(p);
+                        }
+                        idnext = p.Id + 1;
                     }
                 } 
                 catch(Exception e)
@@ -227,6 +237,12 @@ namespace Predmetni_projekat_Formula1
         public static Proizvodjac? GetProizvodjacFromImage(Image img, ICollection<Proizvodjac> proizvodjaci)
         {
             return proizvodjaci.Where(x => x.Source != null && x.Source.Contains(GetLastPartOfSource(img))).FirstOrDefault();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            SaveProizvodjace("Proizvodjaci.txt");
+            base.OnClosing(e);
         }
     }
 }
