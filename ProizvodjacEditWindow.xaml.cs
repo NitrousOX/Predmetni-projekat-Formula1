@@ -60,7 +60,7 @@ namespace Predmetni_projekat_Formula1
                     wnd.Drzave.Add(d_new);
                 }
             }
-            if (!File.Exists(MyProizvodjac.Source))
+            if (File.Exists(MyProizvodjac.Source) == false)
             {
                 MessageBox.Show("Morate izabrati tacnu putanju!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
                 MyProizvodjac.Source = source_pre;
