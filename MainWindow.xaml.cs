@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Predmetni_projekat_Formula1
 {
@@ -255,10 +256,28 @@ namespace Predmetni_projekat_Formula1
         {
             if ((Radio_CSV.IsChecked == false) && (Radio_XLS.IsChecked == false))
             {
-                MessageBox.Show("Morate izabrati format");
+                MessageBox.Show("Morate izabrati format!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (Radio_CSV.IsChecked == true)
             {
+                var promptWnd = new SaveFileDialog();
+                promptWnd.FileName = "Document.csv";
+                promptWnd.DefaultExt = ".csv";
+                promptWnd.Filter = "CSV Documents (.csv) |*.csv";
+                bool? hasOpened = promptWnd.ShowDialog();
+                if (hasOpened == true)
+                {
+                    try
+                    {
+                        ExportAsCSV(VozaciDG.DataContext as ICollection<Vozac> ,promptWnd.FileName);
+                        MessageBox.Show("File exported succesfuly!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Could not export file!", "Fatal Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
 
             }
             else
@@ -266,10 +285,6 @@ namespace Predmetni_projekat_Formula1
 
             }
         }
-        /// <summary>
-        /// TAB2
-        /// </summary>
-
         List<Vozac> Ucitaj_Vozace(string putanja)
         {
             List<Vozac> vozaci = new List<Vozac>();
@@ -313,6 +328,17 @@ namespace Predmetni_projekat_Formula1
                                                                         x.Last_Name.ToUpper().Contains(searchPrompt.ToUpper()) ||
                                                                         x.Team.ToUpper().Contains(searchPrompt.ToUpper())));
             VozaciDG.DataContext = novi_vozaci;
+        }
+
+        public static void ExportAsCSV(ICollection<Vozac> vozaci, string putanja)
+        {
+            StreamWriter streamWriter = new StreamWriter(new FileStream(putanja, FileMode.Create, FileAccess.Write), Encoding.UTF8);
+            streamWriter.WriteLine("ID,First Name,Last Name,Team,Nationality,Chassis Number,Number of races,Number of wins");
+            foreach(Vozac v in vozaci)
+            {
+                streamWriter.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", v.ID, v.First_Name, v.Last_Name, v.Team, v.Nationality, v.Chassis_Number, v.Num_Races, v.Num_Wins));
+            }
+            streamWriter.Close();
         }
     }
 }

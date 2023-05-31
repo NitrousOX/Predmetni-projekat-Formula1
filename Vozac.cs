@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Predmetni_projekat_Formula1
 {
 
-    class Vozac
+    public class Vozac
     {
         private uint id;
         private string first_Name;
