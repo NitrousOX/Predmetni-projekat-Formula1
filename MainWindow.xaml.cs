@@ -99,7 +99,6 @@ namespace Predmetni_projekat_Formula1
             dodaj_wnd.Title = "Dodaj novog proizvodjaca";
             dodaj_wnd.btnDodajIzmeni.Content = "Dodaj";
             dodaj_wnd.ShowDialog();
-            SaveProizvodjace("Proizvodjaci.txt");
         }
         private void MenuItem_Click_Ukloni(object sender, RoutedEventArgs e)
         {
@@ -133,7 +132,6 @@ namespace Predmetni_projekat_Formula1
                         }
                     }
                     proizvodjaciMapa.Remove(proizvodjac);
-                    SaveProizvodjace("Proizvodjaci.txt");
                 }
             }
         }
@@ -149,7 +147,6 @@ namespace Predmetni_projekat_Formula1
                     prozor.Title = "Izmeni proizvodjaca";
                     prozor.btnDodajIzmeni.Content = "Izmeni";
                     prozor.ShowDialog();
-                    SaveProizvodjace("Proizvodjaci.txt");
                 }
             }
         }
