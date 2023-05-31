@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Predmetni_projekat_Formula1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="630" Width="765">
     <Grid>
         <TabControl>
             <TabItem Header="Proizvodjaci">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
                     <TreeView Grid.Column="0" Name="treeView1" ItemsSource="{Binding}" >
                         <TreeView.Resources>
@@ -29,39 +29,43 @@
                         </TreeView.Resources>
                     </TreeView>
                     <Grid Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <Image Source="/Slike/Evropa.JPG"  Margin="4" RenderOptions.BitmapScalingMode="HighQuality" Width="400" Height="400" AllowDrop="True" Drop="Image_Drop">
-                            <Image.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Dodaj novog proizvodjaca" Click="MenuItem_Click_Dodaj"/>
-                                </ContextMenu>
-                            </Image.ContextMenu>
-                        </Image>
-                        <ItemsControl ItemsSource="{Binding}" x:Name="itemsCtrl">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <Canvas/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemContainerStyle>
-                                <Style TargetType="ContentPresenter">
-                                    <Setter Property="Canvas.Top" Value="{Binding Path=Top}"/>
-                                    <Setter Property="Canvas.Left" Value="{Binding Path=Left}"/>
-                                </Style>
-                            </ItemsControl.ItemContainerStyle>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding Path=Source}"  Width="20" Height="20" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove" MouseRightButtonDown="Image_MouseRightButtonDown">
-                                        <Image.ContextMenu> 
-                                            <ContextMenu Name="cmImage">
-                                                <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni"/>
-                                                <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi"/>
-                                                <MenuItem Header="Izmeni" Click="MenuItem_Click_Izmeni"/>
-                                            </ContextMenu>
-                                        </Image.ContextMenu>
-                                    </Image>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <Canvas>
+                            <Border BorderBrush="Black" BorderThickness="3" Margin="1">
+                                <Image  Source="/Slike/Evropa.JPG" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Fill" Width="550" Height="550" AllowDrop="True" Drop="Image_Drop">
+                                    <Image.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Dodaj novog proizvodjaca" Click="MenuItem_Click_Dodaj"/>
+                                        </ContextMenu>
+                                    </Image.ContextMenu>
+                                </Image>
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding}" x:Name="itemsCtrl">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="ContentPresenter">
+                                        <Setter Property="Canvas.Top" Value="{Binding Path=Top}"/>
+                                        <Setter Property="Canvas.Left" Value="{Binding Path=Left}"/>
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=Source}" ToolTip="{Binding Naziv}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove" MouseRightButtonDown="Image_MouseRightButtonDown">
+                                            <Image.ContextMenu> 
+                                                <ContextMenu Name="cmImage">
+                                                    <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni"/>
+                                                    <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi"/>
+                                                    <MenuItem Header="Izmeni" Click="MenuItem_Click_Izmeni"/>
+                                                </ContextMenu>
+                                            </Image.ContextMenu>
+                                        </Image>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Canvas>
                         
                     </Grid>
                 </Grid>

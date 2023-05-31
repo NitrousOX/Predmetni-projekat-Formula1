@@ -33,40 +33,47 @@ namespace Predmetni_projekat_Formula1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string? sediste_pre = MyProizvodjac.Sediste;
-            string? source_pre = MyProizvodjac.Source;
-            var bndExNaziv = tbNaziv.GetBindingExpression(TextBox.TextProperty);
-            var bndExSediste = tbSediste.GetBindingExpression(TextBox.TextProperty);
-            var bndExSource = tbSource.GetBindingExpression(TextBox.TextProperty);
-            bndExNaziv.UpdateSource();
-            bndExSediste.UpdateSource();
-            bndExSource.UpdateSource();
-            if(sediste_pre != MyProizvodjac.Sediste && Owner is MainWindow wnd)
+            if(tbNaziv.Text != "" && tbSediste.Text != "" && tbSource.Text != "")
             {
-                Drzava? d_new = wnd.Drzave.Where(x => x.Naziv == MyProizvodjac.Sediste).FirstOrDefault();
-                Drzava? d_old = wnd.Drzave.Where(x => x.Naziv == sediste_pre).FirstOrDefault();
-                if (d_old != null) 
+                string? sediste_pre = MyProizvodjac.Sediste;
+                string? source_pre = MyProizvodjac.Source;
+                var bndExNaziv = tbNaziv.GetBindingExpression(TextBox.TextProperty);
+                var bndExSediste = tbSediste.GetBindingExpression(TextBox.TextProperty);
+                var bndExSource = tbSource.GetBindingExpression(TextBox.TextProperty);
+                bndExNaziv.UpdateSource();
+                bndExSediste.UpdateSource();
+                bndExSource.UpdateSource();
+                if(sediste_pre != MyProizvodjac.Sediste && Owner is MainWindow wnd)
                 {
-                     d_old.Proizvodjaci.Remove(MyProizvodjac);
-                    if (d_old.Proizvodjaci.Count == 0) wnd.Drzave.Remove(d_old);
-                } 
-                if(d_new != null)
-                {
-                    d_new.Proizvodjaci.Add(MyProizvodjac);
+                    Drzava? d_new = wnd.Drzave.Where(x => x.Naziv == MyProizvodjac.Sediste).FirstOrDefault();
+                    Drzava? d_old = wnd.Drzave.Where(x => x.Naziv == sediste_pre).FirstOrDefault();
+                    if (d_old != null) 
+                    {
+                         d_old.Proizvodjaci.Remove(MyProizvodjac);
+                        if (d_old.Proizvodjaci.Count == 0) wnd.Drzave.Remove(d_old);
+                    } 
+                    if(d_new != null)
+                    {
+                        d_new.Proizvodjaci.Add(MyProizvodjac);
+                    }
+                    else
+                    {
+                        d_new = new Drzava { Naziv = MyProizvodjac.Sediste, Proizvodjaci = new ObservableCollection<Proizvodjac> { MyProizvodjac } };
+                        wnd.Drzave.Add(d_new);
+                    }
                 }
-                else
+                if (File.Exists(MyProizvodjac.Source) == false)
                 {
-                    d_new = new Drzava { Naziv = MyProizvodjac.Sediste, Proizvodjaci = new ObservableCollection<Proizvodjac> { MyProizvodjac } };
-                    wnd.Drzave.Add(d_new);
+                    MessageBox.Show("Morate izabrati tacnu putanju!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MyProizvodjac.Source = source_pre;
+                    return;
                 }
+                this.Close();
             }
-            if (File.Exists(MyProizvodjac.Source) == false)
+            else
             {
-                MessageBox.Show("Morate izabrati tacnu putanju!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
-                MyProizvodjac.Source = source_pre;
-                return;
+                MessageBox.Show("Morate popuniti sva polja!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Hand);
             }
-            this.Close();
         }
 
         private void Button_Click_Open(object sender, RoutedEventArgs e)

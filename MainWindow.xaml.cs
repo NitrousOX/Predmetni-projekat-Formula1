@@ -36,7 +36,7 @@ namespace Predmetni_projekat_Formula1
         public MainWindow()
         {
             InitializeComponent();
-            this.ResizeMode = ResizeMode.NoResize;
+            //this.ResizeMode = ResizeMode.NoResize;
             LoadProizvodjace("Proizvodjaci.txt");
             treeView1.DataContext = drzave;
             itemsCtrl.DataContext = proizvodjaciMapa;
