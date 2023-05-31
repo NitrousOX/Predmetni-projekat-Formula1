@@ -70,7 +70,8 @@ namespace Predmetni_projekat_Formula1
                     proizvodjaciMapa.Remove(p);
                 }
                 Point loc = e.GetPosition(imgMap);
-                p.Location = new Thickness((loc.X - imgMap.Width / 2 + 10) * 2, (loc.Y - imgMap.Height / 2 + 10) * 2, 0, 0);
+                p.Left = loc.X;
+                p.Top = loc.Y;
                 proizvodjaciMapa.Add(p);
             }
         }
@@ -166,7 +167,7 @@ namespace Predmetni_projekat_Formula1
                 foreach (Proizvodjac p in d.Proizvodjaci)
                 {
                     bool naMapi = proizvodjaciMapa.Contains(p);
-                    proizvodjaci.Add(String.Format("{0},{1},{2},{3},{4},{5},{6}", p.Id, p.Naziv, p.Sediste, p.Source,p.Location.Left,p.Location.Top,naMapi));
+                    proizvodjaci.Add(String.Format("{0},{1},{2},{3},{4},{5},{6}", p.Id, p.Naziv, p.Sediste, p.Source,p.Left,p.Top,naMapi));
 
                 }
             }
@@ -189,7 +190,8 @@ namespace Predmetni_projekat_Formula1
                             Naziv = parts[1],
                             Sediste = parts[2],
                             Source = parts[3],
-                            Location = new Thickness(double.Parse(parts[4]), double.Parse(parts[5]), 0, 0)
+                            Left = double.Parse(parts[4]),
+                            Top = double.Parse(parts[5])
                         };
                         Drzava? d = drzave.Where(x => x.Naziv == parts[2]).FirstOrDefault();
                         if (d == null)
@@ -222,7 +224,7 @@ namespace Predmetni_projekat_Formula1
                         idnext = p.Id + 1;
                     }
                 } 
-                catch(Exception e)
+                catch(Exception)
                 {
                     MessageBox.Show("Sorry but there was an error with the save file!", "Sorry!", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

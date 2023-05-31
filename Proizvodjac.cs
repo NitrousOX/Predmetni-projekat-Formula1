@@ -15,7 +15,8 @@ namespace Predmetni_projekat_Formula1
 		private string? naziv;
 		private string? sediste;
 		private string? source;
-		private Thickness location = new Thickness();
+		private double left;
+		private double top;
 		public string? Source
 		{
 			get { return source; }
@@ -64,19 +65,30 @@ namespace Predmetni_projekat_Formula1
 				}
 			}
 		}
-		public Thickness Location
+		public double Left
 		{
-			get { return location; }
+			get { return left; }
 			set
 			{
-				if(value != location)
+				if(value != left)
 				{
-					location= value;
-					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Location)));
+					left = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Left)));
 				}
 			}
 		}
-
+		public double Top
+		{
+			get { return top; }
+			set
+			{
+				if(value != top)
+				{
+					top = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Top)));
+				}
+			}
+		}
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 }
