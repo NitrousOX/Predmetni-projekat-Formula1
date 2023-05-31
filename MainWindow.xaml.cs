@@ -18,7 +18,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Predmetni_projekat_Formula1
 {
@@ -304,5 +303,4 @@ namespace Predmetni_projekat_Formula1
             return vozaci;
         }
     }
-}
 }

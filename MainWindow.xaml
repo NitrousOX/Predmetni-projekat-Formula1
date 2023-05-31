@@ -26,7 +26,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image x:Name="Img_Mapa" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Mapa.jpg"  />
-                    
+
                     <ListView x:Name="ListView_podaci" ItemsSource="{Binding Vozaci}">
                         <ListView.View>
                             <GridView ColumnHeaderStringFormat="">
@@ -45,13 +45,6 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Treci">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
-
-    </Grid>
-        <TabControl>
             <TabItem Header="Proizvodjaci">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -98,7 +91,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Image Source="{Binding Path=Source}" ToolTip="{Binding Naziv}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove" MouseRightButtonDown="Image_MouseRightButtonDown">
-                                            <Image.ContextMenu> 
+                                            <Image.ContextMenu>
                                                 <ContextMenu Name="cmImage">
                                                     <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni"/>
                                                     <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi"/>
@@ -110,7 +103,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </Canvas>
-                        
+
                     </Grid>
                 </Grid>
             </TabItem>
