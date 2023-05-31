@@ -8,6 +8,50 @@
         Title="MainWindow" Height="630" Width="765">
     <Grid>
         <TabControl>
+            <TabItem Header="Prvi">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="TxtBox_Pretraga" HorizontalAlignment="Left" Margin="101,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="385"/>
+                    <Button x:Name="Btn_Search" Content="Search" HorizontalAlignment="Left" Margin="491,49,0,0" VerticalAlignment="Top" Width="78"/>
+                    <Label Content="Pretraga" HorizontalAlignment="Left" Margin="101,19,0,0" VerticalAlignment="Top" Width="124" FontSize="20" FontWeight="Bold"/>
+                    <Button x:Name="Btn_Export" Content="Export" HorizontalAlignment="Left" Margin="662,44,0,0" VerticalAlignment="Top" Height="25" Width="75" FontWeight="Bold" Click="Btn_Export_Click"/>
+                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Height="NaN" Margin="0,105,0,0" Width="NaN"/>
+                    <RadioButton x:Name="Radio_CSV" Content="CSV" HorizontalAlignment="Left" Margin="655,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.074,0.468"/>
+                    <RadioButton x:Name="Radio_XLS" Content="XLS" HorizontalAlignment="Left" Margin="700,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.074,0.468"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Drugi">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.35*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="Img_Mapa" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Mapa.jpg"  />
+                    
+                    <ListView x:Name="ListView_podaci" ItemsSource="{Binding Vozaci}">
+                        <ListView.View>
+                            <GridView ColumnHeaderStringFormat="">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                                <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding first_name}"/>
+                                <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding last_name}"/>
+                                <GridViewColumn Header="Tim" DisplayMemberBinding="{Binding team}"/>
+                                <GridViewColumn Header="Drzava" DisplayMemberBinding="{Binding nationality}"/>
+                                <GridViewColumn Header="Sasija" DisplayMemberBinding="{Binding chassis_Number}"/>
+                                <GridViewColumn Header="Broj trka" DisplayMemberBinding="{Binding num_Races}"/>
+                                <GridViewColumn Header="Broj pobeda" DisplayMemberBinding="{Binding num_Wins}"/>
+                                <GridViewColumn Header="Slika" DisplayMemberBinding="{Binding picture_path}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Treci">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+        <TabControl>
             <TabItem Header="Proizvodjaci">
                 <Grid>
                     <Grid.ColumnDefinitions>
