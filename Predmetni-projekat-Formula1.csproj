@@ -59,4 +59,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Mapa.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Mapa.jpg" />
+  </ItemGroup>
+
 </Project>
