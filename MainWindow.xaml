@@ -21,7 +21,7 @@
                     <StackPanel Grid.Row="0" Grid.Column="0">
                         <Label Content="Pretraga"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
                         <TextBox x:Name="TxtBox_Pretraga" Width="400" Height="25" TextAlignment="Center" Margin="5" HorizontalAlignment="Center"/>
-                        <Button x:Name="Btn_Search" Content="Search" Height="25" Width="80" Margin="5"/>
+                        <Button x:Name="Btn_Search" Content="Search" Click="Btn_Search_Click" Height="25" Width="80" Margin="5"/>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
                         <Button x:Name="Btn_Export" Content="Export" Margin="20"  Height="25" Width="75" FontWeight="Bold" Click="Btn_Export_Click"/>

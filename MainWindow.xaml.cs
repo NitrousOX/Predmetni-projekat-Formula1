@@ -304,5 +304,15 @@ namespace Predmetni_projekat_Formula1
 
             return vozaci;
         }
+
+        private void Btn_Search_Click(object sender, RoutedEventArgs e)
+        {
+            string searchPrompt = TxtBox_Pretraga.Text;
+            ObservableCollection<Vozac> novi_vozaci =  
+                new ObservableCollection<Vozac>(lista_vozaca.Where(x => x.First_Name.ToUpper().Contains(searchPrompt.ToUpper()) ||
+                                                                        x.Last_Name.ToUpper().Contains(searchPrompt.ToUpper()) ||
+                                                                        x.Team.ToUpper().Contains(searchPrompt.ToUpper())));
+            VozaciDG.DataContext = novi_vozaci;
+        }
     }
 }
