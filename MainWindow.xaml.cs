@@ -33,6 +33,7 @@ namespace Predmetni_projekat_Formula1
         private ObservableCollection<Drzava> drzave = new ObservableCollection<Drzava>();
         private ObservableCollection<Proizvodjac> proizvodjaciMapa = new ObservableCollection<Proizvodjac>();
         private Image temp = new Image();
+        private List<Vozac> lista_vozaca;
         public ObservableCollection<Drzava> Drzave
         {
             get { return drzave; }
@@ -42,8 +43,9 @@ namespace Predmetni_projekat_Formula1
             InitializeComponent();//this.ResizeMode = ResizeMode.NoResize;
             LoadProizvodjace("Proizvodjaci.txt");
             treeView1.DataContext = drzave;
-            itemsCtrl.DataContext = proizvodjaciMapa; 
-            List<Vozac> lista_vozaca = Ucitaj_Vozace("..\\..\\..\\vozaci.txt");
+            itemsCtrl.DataContext = proizvodjaciMapa;
+            lista_vozaca = Ucitaj_Vozace("..\\..\\..\\vozaci.txt");
+            VozaciDG.DataContext = lista_vozaca;
         }
 
         private void TextBlock_MouseMove(object sender, MouseEventArgs e)

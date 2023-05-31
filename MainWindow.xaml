@@ -10,13 +10,42 @@
         <TabControl>
             <TabItem Header="Prvi">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="TxtBox_Pretraga" HorizontalAlignment="Left" Margin="101,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="385"/>
-                    <Button x:Name="Btn_Search" Content="Search" HorizontalAlignment="Left" Margin="491,49,0,0" VerticalAlignment="Top" Width="78"/>
-                    <Label Content="Pretraga" HorizontalAlignment="Left" Margin="101,19,0,0" VerticalAlignment="Top" Width="124" FontSize="20" FontWeight="Bold"/>
-                    <Button x:Name="Btn_Export" Content="Export" HorizontalAlignment="Left" Margin="662,44,0,0" VerticalAlignment="Top" Height="25" Width="75" FontWeight="Bold" Click="Btn_Export_Click"/>
-                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Height="NaN" Margin="0,105,0,0" Width="NaN"/>
-                    <RadioButton x:Name="Radio_CSV" Content="CSV" HorizontalAlignment="Left" Margin="655,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.074,0.468"/>
-                    <RadioButton x:Name="Radio_XLS" Content="XLS" HorizontalAlignment="Left" Margin="700,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.074,0.468"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="3.5*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <Label Content="Pretraga"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="TxtBox_Pretraga" Width="400" Height="25" TextAlignment="Center" Margin="5" HorizontalAlignment="Center"/>
+                        <Button x:Name="Btn_Search" Content="Search" Height="25" Width="80" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <Button x:Name="Btn_Export" Content="Export" Margin="20"  Height="25" Width="75" FontWeight="Bold" Click="Btn_Export_Click"/>
+                        <Grid Height="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <RadioButton Grid.Column="0" HorizontalAlignment="Center" x:Name="Radio_CSV" Content="CSV" />
+                            <RadioButton Grid.Column="1" HorizontalAlignment="Center" x:Name="Radio_XLS" Content="XLS" />
+                        </Grid>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="VozaciDG" ItemsSource="{Binding}" AlternatingRowBackground="AntiqueWhite" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="0.2*" Header="Id" Binding="{Binding ID}"/>
+                            <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding First_Name}"/>
+                            <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding Last_Name}"/>
+                            <DataGridTextColumn Width="*" Header="Team" Binding="{Binding Team}"/>
+                            <DataGridTextColumn Width="*" Header="Nationality" Binding="{Binding Nationality}"/>
+                            <DataGridTextColumn Width="*" Header="Chassis Number" Binding="{Binding Chassis_Number}"/>
+                            <DataGridTextColumn Width="*" Header="Number of races" Binding="{Binding Num_Races}"/>
+                            <DataGridTextColumn Width="*" Header="Number of wins" Binding="{Binding Num_Wins}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Drugi">
