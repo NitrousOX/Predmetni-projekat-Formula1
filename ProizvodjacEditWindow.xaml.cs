@@ -83,7 +83,7 @@ namespace Predmetni_projekat_Formula1
             string source = "";
             if (opened == true) 
             {
-                source = openFileDialog.FileName;
+                source = System.IO.Path.GetRelativePath(Directory.GetCurrentDirectory(), openFileDialog.FileName);
                 if(Owner is MainWindow window)
                 {
                     foreach(Drzava d in window.Drzave)
