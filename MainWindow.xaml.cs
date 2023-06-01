@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
+using System.Data;
 using System.IO;
 using System.Linq;
-using System.Security.RightsManagement;
-using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
+using NPOI.HSSF.UserModel;
 
 namespace Predmetni_projekat_Formula1
 {
@@ -282,7 +274,24 @@ namespace Predmetni_projekat_Formula1
             }
             else
             {
-
+                var promptWnd = new SaveFileDialog();
+                promptWnd.FileName = "Document.xls";
+                promptWnd.DefaultExt = ".xls";
+                promptWnd.Filter = "XLS Documents (.xls) |*.xls";
+                bool? hasOpened = promptWnd.ShowDialog();
+                if(hasOpened == true)
+                {
+                    try
+                    {
+                        ExportAsXLS(VozaciDG.DataContext as ICollection<Vozac>, promptWnd.FileName);
+                        MessageBox.Show("File exported succesfuly!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Could not export file!", "Fatal Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
             }
         }
         List<Vozac> Ucitaj_Vozace(string putanja)
@@ -339,6 +348,58 @@ namespace Predmetni_projekat_Formula1
                 streamWriter.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", v.ID, v.First_Name, v.Last_Name, v.Team, v.Nationality, v.Chassis_Number, v.Num_Races, v.Num_Wins));
             }
             streamWriter.Close();
+        }
+
+        public static void ExportAsXLS(ICollection<Vozac> vozaci, string putanja)
+        {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet? worksheet = workbook.CreateSheet("Sheet1") as HSSFSheet;
+            int rowindex = 0;
+            HSSFRow? header = worksheet?.CreateRow(rowindex) as HSSFRow;
+            if(header != null)
+            {
+                header.CreateCell(0).SetCellValue("ID");
+                header.CreateCell(1).SetCellValue("First Name");
+                header.CreateCell(2).SetCellValue("Last Name");
+                header.CreateCell(3).SetCellValue("Team");
+                header.CreateCell(4).SetCellValue("Nationality");
+                header.CreateCell(5).SetCellValue("Chassis number");
+                header.CreateCell(6).SetCellValue("Number of races");
+                header.CreateCell(7).SetCellValue("Number of wins");
+
+                foreach(Vozac v in vozaci)
+                {
+                    rowindex++;
+                    HSSFRow? dataRow = worksheet?.CreateRow(rowindex) as HSSFRow;
+                    if(dataRow != null)
+                    {
+                        dataRow.CreateCell(0).SetCellValue(v.ID);
+                        dataRow.CreateCell(1).SetCellValue(v.First_Name);
+                        dataRow.CreateCell(2).SetCellValue(v.Last_Name);
+                        dataRow.CreateCell(3).SetCellValue(v.Team);
+                        dataRow.CreateCell(4).SetCellValue(v.Nationality);
+                        dataRow.CreateCell(5).SetCellValue(v.Chassis_Number);
+                        dataRow.CreateCell(6).SetCellValue(v.Num_Races);
+                        dataRow.CreateCell(7).SetCellValue(v.Num_Wins);
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+
+                    using(FileStream fs = new FileStream(putanja, FileMode.Create, FileAccess.Write))
+                    {
+                        workbook.Write(fs);
+                    }
+                }
+
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+
         }
     }
 }
