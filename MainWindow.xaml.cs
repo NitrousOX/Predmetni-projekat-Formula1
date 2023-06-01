@@ -69,8 +69,8 @@ namespace Predmetni_projekat_Formula1
                     proizvodjaciMapa.Remove(p);
                 }
                 Point loc = e.GetPosition(imgMap);
-                p.Left = loc.X;
-                p.Top = loc.Y;
+                p.Left = loc.X - 10;
+                p.Top = loc.Y - 10;
                 proizvodjaciMapa.Add(p);
             }
         }
