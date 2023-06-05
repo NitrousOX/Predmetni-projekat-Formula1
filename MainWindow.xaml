@@ -5,19 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Predmetni_projekat_Formula1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-
+        Title="MainWindow" Height="630" Width="765">
     <Grid>
         <TabControl>
             <TabItem Header="Prvi">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="TxtBox_Pretraga" HorizontalAlignment="Left" Margin="101,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="385"/>
-                    <Button x:Name="Btn_Search" Content="Search" HorizontalAlignment="Left" Margin="491,49,0,0" VerticalAlignment="Top" Width="78"/>
-                    <Label Content="Pretraga" HorizontalAlignment="Left" Margin="101,19,0,0" VerticalAlignment="Top" Width="124" FontSize="20" FontWeight="Bold"/>
-                    <Button x:Name="Btn_Export" Content="Export" HorizontalAlignment="Left" Margin="662,44,0,0" VerticalAlignment="Top" Height="25" Width="75" FontWeight="Bold" Click="Btn_Export_Click"/>
-                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Height="NaN" Margin="0,105,0,0" Width="NaN"/>
-                    <RadioButton x:Name="Radio_CSV" Content="CSV" HorizontalAlignment="Left" Margin="655,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.074,0.468"/>
-                    <RadioButton x:Name="Radio_XLS" Content="XLS" HorizontalAlignment="Left" Margin="700,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.074,0.468"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="3.5*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <Label Content="Pretraga"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="TxtBox_Pretraga" Width="400" Height="25" TextAlignment="Center" Margin="5" HorizontalAlignment="Center"/>
+                        <Button x:Name="Btn_Search" Content="Search" Click="Btn_Search_Click" Height="25" Width="80" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                        <Button x:Name="Btn_Export" Content="Export" Margin="20"  Height="25" Width="75" FontWeight="Bold" Click="Btn_Export_Click"/>
+                        <Grid Height="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <RadioButton Grid.Column="0" HorizontalAlignment="Center" x:Name="Radio_CSV" Content="CSV" />
+                            <RadioButton Grid.Column="1" HorizontalAlignment="Center" x:Name="Radio_XLS" Content="XLS" />
+                        </Grid>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="VozaciDG" ItemsSource="{Binding}" AlternatingRowBackground="AntiqueWhite" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="0.2*" Header="Id" Binding="{Binding ID}"/>
+                            <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding First_Name}"/>
+                            <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding Last_Name}"/>
+                            <DataGridTextColumn Width="*" Header="Team" Binding="{Binding Team}"/>
+                            <DataGridTextColumn Width="*" Header="Nationality" Binding="{Binding Nationality}"/>
+                            <DataGridTextColumn Width="*" Header="Chassis Number" Binding="{Binding Chassis_Number}"/>
+                            <DataGridTextColumn Width="*" Header="Number of races" Binding="{Binding Num_Races}"/>
+                            <DataGridTextColumn Width="*" Header="Number of wins" Binding="{Binding Num_Wins}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Vozaci" Height="20" VerticalAlignment="Bottom">
@@ -27,7 +55,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image x:Name="Img_Mapa" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Mapa.jpg"  />
-                    
+
                     <ListView x:Name="ListView_podaci" ItemsSource="{Binding Vozaci}">
                         <ListView.View>
                             <GridView >
@@ -47,9 +75,67 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Proizvodjaci">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <TreeView Grid.Column="0" Name="treeView1" ItemsSource="{Binding}" >
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type local:Drzava}" ItemsSource="{Binding Proizvodjaci}">
+                                <TextBlock Text="{Binding Naziv}" />
+                            </HierarchicalDataTemplate>
+                            <DataTemplate DataType="{x:Type local:Proizvodjac}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Source}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <TextBlock Text="   "/>
+                                    <TextBlock Text="{Binding Naziv}" VerticalAlignment="Center" MouseMove="TextBlock_MouseMove"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
+                    <Grid Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Canvas>
+                            <Border BorderBrush="Black" BorderThickness="3" Margin="1">
+                                <Image  Source="/Slike/Evropa.JPG" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Fill" Width="550" Height="550" AllowDrop="True" Drop="Image_Drop">
+                                    <Image.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Dodaj novog proizvodjaca" Click="MenuItem_Click_Dodaj"/>
+                                        </ContextMenu>
+                                    </Image.ContextMenu>
+                                </Image>
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding}" x:Name="itemsCtrl">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="ContentPresenter">
+                                        <Setter Property="Canvas.Top" Value="{Binding Path=Top}"/>
+                                        <Setter Property="Canvas.Left" Value="{Binding Path=Left}"/>
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=Source}" ToolTip="{Binding Naziv}" Width="30" Height="30" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove" MouseRightButtonDown="Image_MouseRightButtonDown">
+                                            <Image.ContextMenu>
+                                                <ContextMenu Name="cmImage">
+                                                    <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni"/>
+                                                    <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi"/>
+                                                    <MenuItem Header="Izmeni" Click="MenuItem_Click_Izmeni"/>
+                                                </ContextMenu>
+                                            </Image.ContextMenu>
+                                        </Image>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Canvas>
+
+                    </Grid>
+                </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>
