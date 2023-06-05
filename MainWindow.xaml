@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Predmetni_projekat_Formula1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="630" Width="765">
+        Title="MainWindow" Height="630" Width="765"
+        WindowState="Maximized"
+    >
     <Grid>
         <TabControl>
-            <TabItem Header="Prvi">
+            <TabItem Header="Pretraga">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -48,32 +50,67 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Drugi">
+
+
+            <TabItem Header="Vozaci" Height="20" VerticalAlignment="Bottom">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.35*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="Img_Mapa" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Mapa.jpg"  />
 
-                    <ListView x:Name="ListView_podaci" ItemsSource="{Binding Vozaci}">
-                        <ListView.View>
-                            <GridView ColumnHeaderStringFormat="">
+
+                    <ListView x:Name="ListView_podaci" ItemsSource="{Binding}" MouseMove="ListView_podaci_MouseMove" Background="{x:Null}" >
+                        <ListView.View >
+                            <GridView>
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
-                                <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding first_name}"/>
-                                <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding last_name}"/>
-                                <GridViewColumn Header="Tim" DisplayMemberBinding="{Binding team}"/>
-                                <GridViewColumn Header="Drzava" DisplayMemberBinding="{Binding nationality}"/>
-                                <GridViewColumn Header="Sasija" DisplayMemberBinding="{Binding chassis_Number}"/>
-                                <GridViewColumn Header="Broj trka" DisplayMemberBinding="{Binding num_Races}"/>
-                                <GridViewColumn Header="Broj pobeda" DisplayMemberBinding="{Binding num_Wins}"/>
-                                <GridViewColumn Header="Slika" DisplayMemberBinding="{Binding picture_path}"/>
+                                <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding First_Name}"/>
+                                <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding Last_Name}"/>
+                                <GridViewColumn Header="Tim" DisplayMemberBinding="{Binding Team}"/>
+                                <GridViewColumn Header="Drzava" DisplayMemberBinding="{Binding Nationality}"/>
+                                <GridViewColumn Header="Sasija" DisplayMemberBinding="{Binding Chassis_Number}"/>
+                                <GridViewColumn Header="Broj trka" DisplayMemberBinding="{Binding Num_Races}"/>
+                                <GridViewColumn Header="Broj pobeda" DisplayMemberBinding="{Binding Num_Wins}"/>
+                                <GridViewColumn Header="Slika">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Picture_path}" Width="50" Height="50" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
 
+                    <Canvas Grid.Column="1">
+                        <Image x:Name="Img_Mapa" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Mapa.jpg" Width="569" Height ="422" AllowDrop="True" Drop="Img_Mapa_Drop">
+                            <Image.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Dodaj novog vozaca" Click="MenuItem_Click_Dodaj_Vozaca" />
+                                </ContextMenu>
+                            </Image.ContextMenu>
+                        </Image>
+                        <ItemsControl x:Name="Items_naMapi" ItemsSource="{Binding}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Picture_path}" Width="50" Height="50" >
+                                        <Image.ContextMenu>
+                                            <ContextMenu Name="Context_Menu_Image">
+                                                <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni_Vozaca"/>
+                                                <MenuItem Header="Obrisi proizvodjaca" Click="MenuItem_Click_Obrisi_Vozaca" />
+                                                <MenuItem Header="Izmeni" Click="MenuItem_Click_Izmeni_Vozaca" />
+                                            </ContextMenu>
+                                        </Image.ContextMenu>
+                                    </Image>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Canvas>
+
                 </Grid>
             </TabItem>
+
+
             <TabItem Header="Proizvodjaci">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -132,7 +169,6 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </Canvas>
-
                     </Grid>
                 </Grid>
             </TabItem>
