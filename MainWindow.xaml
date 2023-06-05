@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Predmetni_projekat_Formula1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
         <TabControl>
             <TabItem Header="Prvi">
@@ -19,7 +20,7 @@
                     <RadioButton x:Name="Radio_XLS" Content="XLS" HorizontalAlignment="Left" Margin="700,74,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.074,0.468"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Drugi">
+            <TabItem Header="Vozaci" Height="20" VerticalAlignment="Bottom">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.35*"/>
@@ -29,23 +30,23 @@
                     
                     <ListView x:Name="ListView_podaci" ItemsSource="{Binding Vozaci}">
                         <ListView.View>
-                            <GridView ColumnHeaderStringFormat="">
+                            <GridView >
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
-                                <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding first_name}"/>
-                                <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding last_name}"/>
-                                <GridViewColumn Header="Tim" DisplayMemberBinding="{Binding team}"/>
-                                <GridViewColumn Header="Drzava" DisplayMemberBinding="{Binding nationality}"/>
-                                <GridViewColumn Header="Sasija" DisplayMemberBinding="{Binding chassis_Number}"/>
-                                <GridViewColumn Header="Broj trka" DisplayMemberBinding="{Binding num_Races}"/>
-                                <GridViewColumn Header="Broj pobeda" DisplayMemberBinding="{Binding num_Wins}"/>
-                                <GridViewColumn Header="Slika" DisplayMemberBinding="{Binding picture_path}"/>
+                                <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding First_Name}"/>
+                                <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding Last_Name}"/>
+                                <GridViewColumn Header="Tim" DisplayMemberBinding="{Binding Team}"/>
+                                <GridViewColumn Header="Drzava" DisplayMemberBinding="{Binding Nationality}"/>
+                                <GridViewColumn Header="Sasija" DisplayMemberBinding="{Binding Chassis_Number}"/>
+                                <GridViewColumn Header="Broj trka" DisplayMemberBinding="{Binding Num_Races}"/>
+                                <GridViewColumn Header="Broj pobeda" DisplayMemberBinding="{Binding Num_Wins}"/>
+                                <GridViewColumn Header="Slika" DisplayMemberBinding="{Binding Picture_path}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Treci">
+            <TabItem Header="Proizvodjaci">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>

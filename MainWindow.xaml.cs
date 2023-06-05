@@ -26,12 +26,16 @@ namespace Predmetni_projekat_Formula1
 
     public partial class MainWindow : Window
     {
-
+        private ObservableCollection<Vozac> Vozaci;
         public MainWindow()
         {
+            this.DataContext = this;
             InitializeComponent();
             List<Vozac> lista_vozaca = Ucitaj_Vozace("..\\..\\..\\vozaci.txt");
+            Vozaci = new ObservableCollection<Vozac>(lista_vozaca);
+            ListView_podaci.ItemsSource = Vozaci;
         }
+
         /// <summary>
         /// TAB1
         /// </summary>
