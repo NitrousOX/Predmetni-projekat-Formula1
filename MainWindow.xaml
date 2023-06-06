@@ -50,7 +50,7 @@
                             <RadioButton Grid.Column="1" HorizontalAlignment="Center" x:Name="Radio_XLS" Content="XLS" />
                         </Grid>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="VozaciDG" ItemsSource="{Binding}" AlternatingRowBackground="AntiqueWhite" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="VozaciDG" ItemsSource="{Binding}" AlternatingRowBackground="MistyRose" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="0.2*" Header="Id" Binding="{Binding ID}"/>
                             <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding First_Name}"/>
