@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
+using NPOI.HPSF;
 using NPOI.HSSF.UserModel;
 
 namespace Predmetni_projekat_Formula1
@@ -22,13 +23,19 @@ namespace Predmetni_projekat_Formula1
 
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Vozac> Vozaci;
+        private ObservableCollection<Vozac> vozaci = new ObservableCollection<Vozac>();
+        private ObservableCollection<Vozac> vozaciNaMapi = new ObservableCollection<Vozac>();
+        private uint id_sledeci;
+        public ObservableCollection<Vozac> Vozaci
+        {
+            get { return vozaci; }
+        }
 
         private int idnext;
         private ObservableCollection<Drzava> drzave = new ObservableCollection<Drzava>();
         private ObservableCollection<Proizvodjac> proizvodjaciMapa = new ObservableCollection<Proizvodjac>();
         private Image temp = new Image();
-        private List<Vozac> lista_vozaca;
+
         public ObservableCollection<Drzava> Drzave
         {
             get { return drzave; }
@@ -39,15 +46,23 @@ namespace Predmetni_projekat_Formula1
             LoadProizvodjace("Proizvodjaci.txt");
             treeView1.DataContext = drzave;
             itemsCtrl.DataContext = proizvodjaciMapa;
-            lista_vozaca = Ucitaj_Vozace("..\\..\\..\\vozaci.txt");
-            VozaciDG.DataContext = lista_vozaca;
 
-             this.DataContext = this;
-            InitializeComponent();
-            List<Vozac> lista_vozaca = Ucitaj_Vozace("..\\..\\..\\vozaci.txt");
-            Vozaci = new ObservableCollection<Vozac>(lista_vozaca);
-            ListView_podaci.ItemsSource = Vozaci;
+            UcitajVozace(@"..\..\..\vozaci.txt");
+            ListView_podaci.DataContext = vozaci;
+            Items_naMapi.DataContext = vozaciNaMapi;
+
+            VozaciDG.DataContext = vozaci;
+
+            
         }
+
+
+
+        /// ======================
+        /// TAB3  funkcionalnost
+        /// ======================
+
+
 
         private void TextBlock_MouseMove(object sender, MouseEventArgs e)
         {
@@ -252,6 +267,124 @@ namespace Predmetni_projekat_Formula1
             SaveProizvodjace("Proizvodjaci.txt");
             base.OnClosing(e);
         }
+
+
+
+        /// ======================
+        /// TAB2  funkcionalnost
+        /// ======================
+
+
+
+        private void UcitajVozace(string putanja)
+        {
+            uint id;
+            string first_Name;
+            string last_Name;
+            string team;
+            string nationality;
+            string chassis_Number;
+            int num_Races;
+            int num_Wins;
+            string picture_path;
+
+            if (File.Exists(putanja))
+            {
+                try
+                {
+                    StreamReader reader = File.OpenText(putanja);
+                    string line;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] items = line.Split(',');
+                        id = uint.Parse(items[0]);
+                        first_Name = items[1];
+                        last_Name = items[2];
+                        team = items[3];
+                        nationality = items[4];
+                        chassis_Number = items[5];
+                        num_Races = int.Parse(items[6]);
+                        num_Wins = int.Parse(items[7]);
+                        picture_path = items[8];
+
+                        Vozac novi_vozac = new Vozac(id, first_Name, last_Name, team, nationality, chassis_Number, num_Races, num_Wins, picture_path);
+
+                        if (vozaci.Contains(novi_vozac))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            vozaci.Add(novi_vozac);
+                            id_sledeci = id + 1; 
+                        }
+                    }
+                }
+                catch(Exception e){
+                    MessageBox.Show("Desila se greska pri ucitavanju vozaca!");
+                }
+            }
+        }
+
+
+
+        private void ListView_podaci_MouseMove(object sender, MouseEventArgs e)
+        {
+            Vozac? vozac = null;
+
+           if(sender is ListView listView && e.LeftButton == MouseButtonState.Pressed)
+            {
+                vozac = listView.SelectedItem as Vozac;
+                if (vozac == null) return;
+                DragDrop.DoDragDrop(listView, vozac, DragDropEffects.Copy);
+                vozaciNaMapi.Add(vozac);
+            }
+        }
+
+        private void Img_Mapa_Drop(object sender, DragEventArgs e)
+        {
+           
+        }
+
+
+
+        private void MenuItem_Click_Ukloni_Vozaca(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void MenuItem_Click_Obrisi_Vozaca(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void MenuItem_Click_Izmeni_Vozaca(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_Dodaj_Vozaca(object sender, RoutedEventArgs e)
+        {
+           Vozac nov_vozac = new Vozac();
+            nov_vozac.ID = id_sledeci;
+            var dodajWndw = new VozacEditWindow(nov_vozac);
+            dodajWndw.Owner = this;
+            dodajWndw.Title = "Dodaj novog vozaca";
+            dodajWndw.Edit_Button.Content = "Dodaj";
+            dodajWndw.ShowDialog();
+        }
+
+
+        /* private void SacuvajVozace(string putanja)
+         {
+             List<string> lista_vozaca = new List<string>();
+             lista_vozaca.Add(String.Format("{0},{1},{2},{3},{4},{5},{6}",);
+             File.WriteAllLines(putanja, lista_vozaca.ToArray());
+         }*/
+       /// ======================
+       /// TAB1  funkcionalnost
+       /// ======================
+
+
         private void Btn_Export_Click(object sender, RoutedEventArgs e)
         {
             if ((Radio_CSV.IsChecked == false) && (Radio_XLS.IsChecked == false))
@@ -269,7 +402,7 @@ namespace Predmetni_projekat_Formula1
                 {
                     try
                     {
-                        ExportAsCSV(VozaciDG.DataContext as ICollection<Vozac> ,promptWnd.FileName);
+                        ExportAsCSV(VozaciDG.DataContext as ICollection<Vozac>, promptWnd.FileName);
                         MessageBox.Show("File exported succesfuly!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception)
@@ -287,7 +420,7 @@ namespace Predmetni_projekat_Formula1
                 promptWnd.DefaultExt = ".xls";
                 promptWnd.Filter = "XLS Documents (.xls) |*.xls";
                 bool? hasOpened = promptWnd.ShowDialog();
-                if(hasOpened == true)
+                if (hasOpened == true)
                 {
                     try
                     {
@@ -302,46 +435,12 @@ namespace Predmetni_projekat_Formula1
                 }
             }
         }
-        List<Vozac> Ucitaj_Vozace(string putanja)
-        {
-            List<Vozac> vozaci = new List<Vozac>();
-            uint id;
-            string first_Name;
-            string last_Name;
-            string team;
-            string nationality;
-            string chassis_Number;
-            int num_Races;
-            int num_Wins;
-            string picture_path;
-
-            StreamReader reader = File.OpenText(putanja);
-            string line;
-
-            while ((line = reader.ReadLine()) != null)
-            {
-                string[] items = line.Split(',');
-                id = uint.Parse(items[0]);
-                first_Name = items[1];
-                last_Name = items[2];
-                team = items[3];
-                nationality = items[4];
-                chassis_Number = items[5];
-                num_Races = int.Parse(items[6]);
-                num_Wins = int.Parse(items[7]);
-                picture_path = "..\\..\\..\\Slike\\" + items[8];
-
-                vozaci.Add(new Vozac(id, first_Name, last_Name, team, nationality, chassis_Number, num_Races, num_Wins, picture_path));
-            }
-
-            return vozaci;
-        }
 
         private void Btn_Search_Click(object sender, RoutedEventArgs e)
         {
             string searchPrompt = TxtBox_Pretraga.Text;
             ObservableCollection<Vozac> novi_vozaci =  
-                new ObservableCollection<Vozac>(lista_vozaca.Where(x => x.First_Name.ToUpper().Contains(searchPrompt.ToUpper()) ||
+                new ObservableCollection<Vozac>(vozaci.Where(x => x.First_Name.ToUpper().Contains(searchPrompt.ToUpper()) ||
                                                                         x.Last_Name.ToUpper().Contains(searchPrompt.ToUpper()) ||
                                                                         x.Team.ToUpper().Contains(searchPrompt.ToUpper())));
             VozaciDG.DataContext = novi_vozaci;
