@@ -42,6 +42,7 @@ namespace Predmetni_projekat_Formula1
         private void BTN_Browse_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
             bool? opened = openFileDialog.ShowDialog();
             string source = "";
             if (opened == true)
