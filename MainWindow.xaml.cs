@@ -25,7 +25,6 @@ namespace Predmetni_projekat_Formula1
     {
         private ObservableCollection<Vozac> vozaci = new ObservableCollection<Vozac>();
         private ObservableCollection<Vozac> vozaciNaMapi = new ObservableCollection<Vozac>();
-        private uint id_sledeci;
         public ObservableCollection<Vozac> Vozaci
         {
             get { return vozaci; }
@@ -261,10 +260,15 @@ namespace Predmetni_projekat_Formula1
         {
             return proizvodjaci.Where(x => x.Source != null && x.Source.Contains(GetLastPartOfSource(img))).FirstOrDefault();
         }
+        public static Vozac? GetVozacFromImage(Image img, ICollection<Vozac> vozaci_collection)
+        {
+            return vozaci_collection.Where(x => x.Picture_path != null && x.Picture_path.Contains(GetLastPartOfSource(img))).FirstOrDefault();
+        }
 
         protected override void OnClosing(CancelEventArgs e)
         {
             SaveProizvodjace("Proizvodjaci.txt");
+            SacuvajVozace(@"..\..\..\vozaci.txt");
             base.OnClosing(e);
         }
 
@@ -293,7 +297,7 @@ namespace Predmetni_projekat_Formula1
                 try
                 {
                     StreamReader reader = File.OpenText(putanja);
-                    string line;
+                    string? line;
 
                     while ((line = reader.ReadLine()) != null)
                     {
@@ -317,11 +321,10 @@ namespace Predmetni_projekat_Formula1
                         else
                         {
                             vozaci.Add(novi_vozac);
-                            id_sledeci = id + 1; 
                         }
                     }
                 }
-                catch(Exception e){
+                catch(Exception){
                     MessageBox.Show("Desila se greska pri ucitavanju vozaca!");
                 }
             }
@@ -338,34 +341,90 @@ namespace Predmetni_projekat_Formula1
                 vozac = listView.SelectedItem as Vozac;
                 if (vozac == null) return;
                 DragDrop.DoDragDrop(listView, vozac, DragDropEffects.Copy);
-                vozaciNaMapi.Add(vozac);
+                
             }
         }
-
-        private void Img_Mapa_Drop(object sender, DragEventArgs e)
+        private void Image_MouseMove_1(object sender, MouseEventArgs e)
         {
-           
+            if (sender is not Image imgVozac) return;
+            Vozac? vozac = null;
+            vozac = GetVozacFromImage(imgVozac, Vozaci);
+                if (vozac != null && e.LeftButton == MouseButtonState.Pressed)
+                {
+                    DragDrop.DoDragDrop(imgVozac, vozac, DragDropEffects.Move);
+                }
         }
 
+        private void Image_DragOver(object sender, DragEventArgs e)
+        {
+            Vozac? vozac = e.Data.GetData(typeof(Vozac)) as Vozac;
+            if (sender is not Image imgMap) return;
+            if (vozac != null)
+            {
+                if (!vozaciNaMapi.Contains(vozac))
+                {
+                    vozaciNaMapi.Add(vozac);
+                }
+                Point loc = e.GetPosition(imgMap);
+                vozac.Left = loc.X - 10;
+                vozac.Top = loc.Y - 10;
+            }
+        } 
 
 
         private void MenuItem_Click_Ukloni_Vozaca(object sender, RoutedEventArgs e)
         {
-
+            if (temp != null)
+            {
+                var vozac = GetVozacFromImage(temp, vozaciNaMapi);
+                if (vozac != null)
+                {
+                    vozaciNaMapi.Remove(vozac);
+                }
+            }
         }
         private void MenuItem_Click_Obrisi_Vozaca(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show("Ovom operacijom cete potpuno obrisati vozaca iz aplikacije!",
+               "Oprez!", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            if (temp != null)
+            {
+                var vozac = GetVozacFromImage(temp, vozaciNaMapi);
+                if (vozac != null)
+                {
+                   
+                    if (vozaci.Contains(vozac)){
+                        vozaci.Remove(vozac);
+                        }
+                    
+                    vozaciNaMapi.Remove(vozac);
+                }
+            }
         }
         private void MenuItem_Click_Izmeni_Vozaca(object sender, RoutedEventArgs e)
         {
+            if (temp != null)
+            {
+                Vozac? nov_vozac = GetVozacFromImage(temp, vozaciNaMapi);
+                if (nov_vozac != null)
+                {
+                    var prozor = new VozacEditWindow(nov_vozac);
+                    prozor.Owner = this;
+                    prozor.Title = "Izmeni vozaca";
+                    prozor.Edit_Button.Content = "Izmeni";
+                    prozor.ShowDialog();
+                }
+            }
 
         }
 
         private void MenuItem_Click_Dodaj_Vozaca(object sender, RoutedEventArgs e)
         {
            Vozac nov_vozac = new Vozac();
-            nov_vozac.ID = id_sledeci;
+            nov_vozac.ID = vozaci.Last().ID + 1;
             var dodajWndw = new VozacEditWindow(nov_vozac);
             dodajWndw.Owner = this;
             dodajWndw.Title = "Dodaj novog vozaca";
@@ -374,12 +433,17 @@ namespace Predmetni_projekat_Formula1
         }
 
 
-        /* private void SacuvajVozace(string putanja)
+         private void SacuvajVozace(string putanja)
          {
              List<string> lista_vozaca = new List<string>();
-             lista_vozaca.Add(String.Format("{0},{1},{2},{3},{4},{5},{6}",);
+             foreach(Vozac voz in vozaci)
+            {
+                lista_vozaca.Add(String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", voz.ID.ToString(), voz.First_Name, voz.Last_Name, 
+                    voz.Team, voz.Nationality, voz.Chassis_Number, voz.Num_Races.ToString(), voz.Num_Wins.ToString(), voz.Picture_path));
+            }
+             
              File.WriteAllLines(putanja, lista_vozaca.ToArray());
-         }*/
+         }
        /// ======================
        /// TAB1  funkcionalnost
        /// ======================

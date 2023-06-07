@@ -16,6 +16,26 @@
     <None Remove="Slike\bmw.png" />
     <None Remove="Slike\citroen.JPG" />
     <None Remove="Slike\citroen.png" />
+    <None Remove="Slike\driver1.jpg" />
+    <None Remove="Slike\driver10.jpg" />
+    <None Remove="Slike\driver11.jpg" />
+    <None Remove="Slike\driver12.jpg" />
+    <None Remove="Slike\driver13.jpg" />
+    <None Remove="Slike\driver14.jpg" />
+    <None Remove="Slike\driver15.jpg" />
+    <None Remove="Slike\driver16.jpg" />
+    <None Remove="Slike\driver17.jpg" />
+    <None Remove="Slike\driver18.jpg" />
+    <None Remove="Slike\driver19.jpg" />
+    <None Remove="Slike\driver2.jpg" />
+    <None Remove="Slike\driver20.jpg" />
+    <None Remove="Slike\driver3.jpg" />
+    <None Remove="Slike\driver4.jpg" />
+    <None Remove="Slike\driver5.jpg" />
+    <None Remove="Slike\driver6.jpg" />
+    <None Remove="Slike\driver7.jpg" />
+    <None Remove="Slike\driver8.jpg" />
+    <None Remove="Slike\driver9.jpg" />
     <None Remove="Slike\Evropa.JPG" />
     <None Remove="Slike\mercedes.jpg" />
     <None Remove="Slike\mercedes.png" />
@@ -33,6 +53,66 @@
     <Resource Include="Slike\citroen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Slike\driver1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver7.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver8.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver9.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver10.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver11.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+	<Resource Include="Slike\driver12.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+	<Resource Include="Slike\driver13.jpg">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Resource>
+    <Resource Include="Slike\driver14.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver15.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver16.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver17.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver18.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver19.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Slike\driver20.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Slike\Evropa.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -42,6 +122,7 @@
     <Resource Include="Slike\peugeot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+	  
   </ItemGroup>
 
   <ItemGroup>

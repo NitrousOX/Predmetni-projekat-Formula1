@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="Izmeni proizvodjaca" Height="200" Width="300">
     <Grid Margin="3">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF0C3BF9"/>
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="#FF7691FB" Offset="0.077"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -17,13 +24,13 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Naziv:" VerticalAlignment="Center" TextAlignment="Right"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Naziv:" VerticalAlignment="Center" TextAlignment="Right" FontWeight="Bold"/>
             <TextBox x:Name="tbNaziv" Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding Naziv, UpdateSourceTrigger=Explicit}" />
         
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Sediste:" VerticalAlignment="Center" TextAlignment="Right"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Sediste:" VerticalAlignment="Center" TextAlignment="Right" FontWeight="Bold"/>
             <TextBox x:Name="tbSediste" Grid.Row="1" Grid.Column="1"  Margin="10" Text="{Binding Sediste, UpdateSourceTrigger=Explicit}"/>
         
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Slika:" VerticalAlignment="Center" TextAlignment="Right"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Slika:" VerticalAlignment="Center" TextAlignment="Right" FontWeight="Bold"/>
             <StackPanel Margin="7" Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <TextBox Width="150" VerticalAlignment="Center" x:Name="tbSource" Text="{Binding Path=Source, UpdateSourceTrigger=Explicit}"/>
                 <Button Content="Browse" Margin="15 0" Padding="4" Click="Button_Click_Open"/>
