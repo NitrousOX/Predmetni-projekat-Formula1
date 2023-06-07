@@ -44,18 +44,19 @@
         <Label Content="Path: " Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
 
         <TextBox x:Name="Edit_TB_ID" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" IsEnabled="False" />
-        <TextBox x:Name="Edit_TB_Name" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
-        <TextBox x:Name="Edit_TB_Last_Name" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
-        <TextBox x:Name="Edit_TB_Team" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
-        <TextBox x:Name="Edit_TB_Nationality" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
-        <TextBox x:Name="Edit_TB_Chassis" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
-        <TextBox x:Name="Edit_TB_Num_Races" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
-        <TextBox x:Name="Edit_TB_Num_Wins" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
-        <TextBox x:Name="Edit_TB_Path" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" />
+        <TextBox x:Name="Edit_TB_Name" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" LostFocus="Edit_Provera_LostFocus" />
+        <TextBox x:Name="Edit_TB_Last_Name" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" LostFocus="Edit_Provera_LostFocus" />
+        <TextBox x:Name="Edit_TB_Team" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" LostFocus="Edit_Provera_LostFocus" />
+        <TextBox x:Name="Edit_TB_Nationality" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" LostFocus="Edit_Provera_LostFocus" />
+        <TextBox x:Name="Edit_TB_Chassis" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" LostFocus="Edit_TB_Chassis_LostFocus" />
+        <TextBox x:Name="Edit_TB_Num_Races" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" LostFocus="Edit_Provera_Number_LostFocus" />
+        <TextBox x:Name="Edit_TB_Num_Wins" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="30" FontSize="14" LostFocus="Edit_Provera_Number_LostFocus" />
+        <TextBox x:Name="Edit_TB_Path" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200" Height="50" FontSize="10" IsEnabled="False" />
 
 
 
-        <Button x:Name="Edit_Button" Content=" "  Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Margin="50,10,50,10" FontWeight="Bold" FontSize="18" />
+        <Button x:Name="Edit_Button" Content=" "  Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Margin="50,10,50,10" FontWeight="Bold" FontSize="18" Click="Edit_Button_Click" />
+        <Button x:Name="BTN_Browse" Content="Browse" Grid.Column="0" Grid.Row="8" Margin="20,5,65,5" FontWeight="Bold" FontSize="14" Click="BTN_Browse_Click"  />
 
 
 

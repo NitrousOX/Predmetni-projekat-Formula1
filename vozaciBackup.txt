@@ -1,20 +1,20 @@
-1,Max,Verstappen,Red Bull Racing,Netherlands,CH_1234,10,5,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver1.jpg
-2,Logan,Sargeant,Williams,United States,CH_5678,12,8,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver2.jpg
-3,Lando,Norris,McLaren,United Kingdom,CH_9012,9,4,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver3.jpg
-4,Pierre,Gasly,Alpine,France,CH_3456,11,2,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver4.jpg
-5,Sergio,Perez,Red Bull Racing,Mexico,CH_7890,8,1,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver5.jpg
-6,Fernando,Alonso,Aston Martin Racing,Spain,CH_2345,10,3,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver6.jpg
-7,Charles,Leclerc,Ferrari,Monaco,CH_6789,12,1,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver7.jpg
-8,Lance,Stroll,Aston Martin Racing,Canada,CH_0123,9,0,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver8.jpg
-9,Kevin,Magnussen,Haas,Denmark,CH_4567,11,0,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver9.jpg
-10,Nyck de,Vries,AlphaTauri,Netherlands,CH_8901,8,2,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver10.jpg
-11,Yuki,Tsunoda,AlphaTauri,Japan,CH_2346,10,5,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver11.jpg
-12,Alex,Albon,Williams,Thailand,CH_6787,12,8,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver12.jpg
-13,Zhou,Guanyu,Alfa Romeo,China,CH_0124,9,4,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver13.jpg
-14,Nico,Hulkenberg,Haas,Germany,CH_4568,11,2,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver14.jpg
-15,Esteban,Ocon,Alpine,France,CH_8902,8,1,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver15.jpg
-16,Lewis,Hamilton,Mercedes,United Kingdom,CH_3457,10,3,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver16.jpg
-17,Carlos,Sainz,Ferrari,Spain,CH_7891,12,1,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver17.jpg
-18,George,Russel,Mercedes,United Kingdom,CH_1235,9,0,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver18.jpg
-19,Valtteri,Bottas,Alfa Romeo,Finland,CH_5679,11,0,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver19.jpg
-20,Oscar,Piastri,McLaren,Australia,CH_9013,8,2,C:\Users\poljv\Documents\GitHub\Predmetni-projekat-Formula1\Slike\driver20.jpg
+1,Max,Verstappen,Red Bull Racing,Netherlands,CH_1234,10,5,..\..\..\Slike\driver1.jpg
+2,Logan,Sargeant,Williams,United States,CH_5678,12,8,..\..\..\Slike\driver2.jpg
+3,Lando,Norris,McLaren,United Kingdom,CH_9012,9,4,..\..\..\Slike\driver3.jpg
+4,Pierre,Gasly,Alpine,France,CH_3456,11,2,..\..\..\Slike\driver4.jpg
+5,Sergio,Perez,Red Bull Racing,Mexico,CH_7890,8,1,..\..\..\Slike\driver5.jpg
+6,Fernando,Alonso,Aston Martin Racing,Spain,CH_2345,10,3,..\..\..\Slike\driver6.jpg
+7,Charles,Leclerc,Ferrari,Monaco,CH_6789,12,1,..\..\..\Slike\driver7.jpg
+8,Lance,Stroll,Aston Martin Racing,Canada,CH_0123,9,0,..\..\..\Slike\driver8.jpg
+9,Kevin,Magnussen,Haas,Denmark,CH_4567,11,0,..\..\..\Slike\driver9.jpg
+10,Nyck de,Vries,AlphaTauri,Netherlands,CH_8901,8,2,..\..\..\Slike\driver10.jpg
+11,Yuki,Tsunoda,AlphaTauri,Japan,CH_2346,10,5,..\..\..\Slike\driver11.jpg
+12,Alex,Albon,Williams,Thailand,CH_6787,12,8,..\..\..\Slike\driver12.jpg
+13,Zhou,Guanyu,Alfa Romeo,China,CH_0124,9,4,..\..\..\Slike\driver13.jpg
+14,Nico,Hulkenberg,Haas,Germany,CH_4568,11,2,..\..\..\Slike\driver14.jpg
+15,Esteban,Ocon,Alpine,France,CH_8902,8,1,..\..\..\Slike\driver15.jpg
+16,Lewis,Hamilton,Mercedes,United Kingdom,CH_3457,10,3,..\..\..\Slike\driver16.jpg
+17,Carlos,Sainz,Ferrari,Spain,CH_7891,12,1,..\..\..\Slike\driver17.jpg
+18,George,Russel,Mercedes,United Kingdom,CH_1235,9,0,..\..\..\Slike\driver18.jpg
+19,Valtteri,Bottas,Alfa Romeo,Finland,CH_5679,11,0,..\..\..\Slike\driver19.jpg
+20,Oscar,Piastri,McLaren,Australia,CH_9013,8,2,..\..\..\Slike\driver20.jpg
