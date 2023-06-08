@@ -42,17 +42,12 @@ namespace Predmetni_projekat_Formula1
         private void BTN_Browse_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
             bool? opened = openFileDialog.ShowDialog();
             string source = "";
             if (opened == true)
             {
                 source = System.IO.Path.GetRelativePath(Directory.GetCurrentDirectory(), openFileDialog.FileName);
-                string[] kraj = source.Split('.');
-                if (kraj.Last()!="png" && kraj.Last() != "jpg")
-                {
-                    MessageBox.Show("Mora biti slika!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
                 if (Owner is MainWindow window)
                 {
                     foreach (Vozac vozac in window.Vozaci)
