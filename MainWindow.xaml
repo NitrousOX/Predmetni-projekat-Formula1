@@ -118,7 +118,7 @@
                             </ItemsControl.ItemContainerStyle>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Picture_path}" Width="50" Height="50" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove_1" MouseRightButtonDown="Image_MouseRightButtonDown">
+                                    <Image Source="{Binding Picture_path}" Width="50" Height="50" RenderOptions.BitmapScalingMode="HighQuality" MouseMove="Image_MouseMove_1" MouseRightButtonDown="Image_MouseRightButtonDown" AllowDrop="True">
                                         <Image.ContextMenu>
                                             <ContextMenu Name="Context_Menu_Image">
                                                 <MenuItem Header="Ukloni ikonicu sa mape" Click="MenuItem_Click_Ukloni_Vozaca"/>
