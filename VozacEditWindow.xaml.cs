@@ -47,6 +47,12 @@ namespace Predmetni_projekat_Formula1
             if (opened == true)
             {
                 source = System.IO.Path.GetRelativePath(Directory.GetCurrentDirectory(), openFileDialog.FileName);
+                string[] kraj = source.Split('.');
+                if (kraj.Last()!="png" && kraj.Last() != "jpg")
+                {
+                    MessageBox.Show("Mora biti slika!", "Greska!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 if (Owner is MainWindow window)
                 {
                     foreach (Vozac vozac in window.Vozaci)
